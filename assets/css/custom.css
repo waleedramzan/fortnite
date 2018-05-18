@@ -1,0 +1,112 @@
+.consoles-style{
+    display: inline-block;
+    margin-right: 10px;
+}
+.consoles-style > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+
+.newclass{
+    font-size: 15px !important;
+    color: #2575dc;
+    border: 2px solid transparent !important;
+    margin-bottom: 0 !important;
+    display: inline-block;
+    border-radius: 30px;
+    padding: 0;
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+}
+.consoles-style > input:checked + i{
+    border: 2px solid #2575dc!important;
+}
+.main-home-page-style{}
+.main-home-custom-css{
+    display: inline-block;
+}
+.main-home-custom-css .console-selection {
+    float: left;
+    /*margin-top: 2em;*/
+    /*margin-right: 2em;*/
+}
+.main-home-custom-css .username-selection{
+    float: left;
+}
+.submit-btn-custom{
+    float: right;
+    margin-left: 1em;
+}
+.submit-btn-custom button {
+    background: #327dde;
+    border: none;
+    height: 40px;
+    width: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.username-textbox-custom{
+    width: 28em;
+}
+
+.custom-table-style{
+
+}
+.custom-table-style ul {
+    list-style: none;
+    float: left;
+    background: #292929;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+.custom-table-style ul li{
+    float: left;
+    padding: 25px;
+}
+.custom-table-style ul li h5 {
+    color: #9a9a9a;
+    font-size: 20px;
+    font-weight: bold;
+}
+.custom-table-style ul li p{
+
+}
+.custom-table-style {
+    margin-left: 15em;
+    margin-right: 15em;
+    margin-top: 2em;
+    overflow: hidden;
+}
+.crowsal-form-custom {
+    text-align: center;
+    position: relative;
+    top: -15em;
+    z-index: 1;
+}
+.fortnite-logo-custom{
+    max-width: 50%;
+}
+.logo-custom{
+    height: auto !important;
+    margin-right: 0px !important;
+}
+.main-section-stats{
+    background: #1f1f1f;
+}
+.recent-matches-custom{
+
+}
+.recent-matches-custom ul{}
+.recent-matches-custom ul li{
+    padding-right: 2em;
+    padding-left: 2em;
+}
+.statis-heading{
+    color: #eee;
+    font-weight: bold;
+    font-size: 25px;
+}
