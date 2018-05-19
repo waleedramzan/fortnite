@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 import requests
 from django.template import loader
 from django.urls import reverse
+from django.views.generic import TemplateView
+
+from fortniteApp.models import *
 
 
 def index(request):
@@ -39,3 +42,23 @@ def forniteData(request):
 def nextLink(request, *args, **kwargs):
     pass
 
+
+class CosmeticsView(TemplateView):
+    template_name = 'cosmetics.html'
+
+    def get(self, request, *args, **kwargs):
+        # return Cosmetics.objects.all()
+        cosmetics_results = Cosmetics.objects.all()
+        banner_results = CosmeticsBanner.objects.all()
+
+        args = {'cosmetics': cosmetics_results, 'banners': banner_results}
+
+        return render(request, self.template_name, args)
+
+
+class WeaponsView(TemplateView):
+    template_name = 'weapons.html'
+    def get(self, request, *args, **kwargs):
+        weapons_results = Weapons.objects.all()
+        args = {'weapons': weapons_results}
+        return render(request, self.template_name, args)

@@ -15,20 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import include
+from django.urls import include, path
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 
 from fortniteApp import views
 
 urlpatterns = [
-    url(r'^$', include('fortniteApp.urls')),
+    path('fortniteApp/', include('fortniteApp.urls')),
     url('blog', views.index, name='index'),
     url(r'admin/', admin.site.urls),
     # url(r'^blog/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
-]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

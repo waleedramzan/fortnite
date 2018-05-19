@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gameforest - Gaming Theme HTML</title>
+     {% block css %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'plugins/animate/animate.min.css' %}">
+        <!-- plugins css -->
+        <link href="{% static 'plugins/owl-carousel/css/owl.carousel.min.css' %}" rel="stylesheet">
+        <!-- theme css -->
+        <link rel="stylesheet" href="{% static '/css/theme.min.css'%}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}">
+        <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+    {% endblock %}
+
+</head>
+<body>
+    <section class="p-y-5">
+    <div class="owl-carousel owl-posts">
+        {% if banners %}
+          {% for banner in banners  %}
+              <div class="post-carousel">
+                <a href="blog-post.html"><img src="{{ banner.image.url }}" alt=""></a>
+                <span class="badge badge-ps4">{{ banner.platform }}</span>
+                <div class="post-block">
+                  <div class="post-caption">
+                    <h2 class="post-title">
+                      <a href="blog-post.html">{{ banner.title }}</a>
+                    </h2>
+                    <div class="post-meta">
+                      <span><i class="fa fa-clock-o"></i>{{ banner.date }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        {% else %}
+            <h4>No Banner Found</h4>
+        {% endif %}
+    </div>
+  </section>
+
+  <section class="toolbar toolbar-links">
+    <div class="container">
+      <h5>Cosmetics <span>({{ cosmetics|length }})</span></h5>
+      <div class="dropdown float-right">
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item active" href="#">Recent</a>
+          <a class="dropdown-item" href="#">Popular</a>
+          <a class="dropdown-item" href="#">Platforms</a>
+        </div>
+      </div>
+      <ul class="toolbar-nav hidden-md-down m-r-25">
+        <li><a href="game-post.html">Articles</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li class="active"><a href="gallery.html">Images</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Streams</a></li>
+        <li><a href="#">Cheats &amp; Guides</a></li>
+        <li><a href="#">Forum</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="row row-3 figure-effect">
+      {% if cosmetics %}
+          {% for cosmetic in cosmetics  %}
+                <div class="col-12 col-sm-6 col-md-4">
+                  <figure>
+                    <div class="figure-img">
+                      <a href="{{ cosmetic.image.url }}" data-lightbox='{"disqus": true}'>
+                      <img src="{{ cosmetic.image.url }}" alt="">
+                    </a>
+                    </div>
+                  </figure>
+                </div>
+            {% endfor %}
+          {% else %}
+                <h4>Currently No Item found</h4>
+      {% endif %}
+      </div>
+    </div>
+  </section>
+  <!-- /main -->
+
+  <!-- vendor js -->
+  <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'plugins/popper/popper.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+  <!-- plugins js -->
+  <script src="{% static 'plugins/lightbox/lightbox.js' %}"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // lightbox
+      $('[data-lightbox]').lightbox({
+        disqus: 'gameforestyakuzieu'
+      });
+    })(jQuery);
+  </script>
+
+     <!-- plugins js -->
+  <script src="{% static 'plugins/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // owl carousel
+      $('.owl-posts').owlCarousel({
+        margin: 5,
+        loop: true,
+        dots: false,
+        autoplay: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          1024: {
+            items: 1,
+            center: false
+          },
+          1200: {
+            items: 2,
+            center: true
+          }
+        }
+      });
+
+      $('.owl-videos').owlCarousel({
+        margin: 15,
+        loop: true,
+        dots: false,
+        responsive: {
+          0: {
+            items: 1
+          },
+          700: {
+            items: 2
+          },
+          800: {
+            items: 3
+          },
+          1000: {
+            items: 4
+          },
+          1200: {
+            items: 6
+          }
+        }
+      });
+    })(jQuery);
+  </script>
+
+
+  <!-- theme js -->
+  <script src="{% static 'js/theme.min.js' %}"></script>
+</body>
+</html>
