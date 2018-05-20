@@ -9,22 +9,25 @@ from zinnia.models import Entry
 from fortniteApp.models import *
 
 
-def forniteData(request):
-    user = {}
-    KEY = '3ffdffa5-7f61-4b2d-a21a-e3c0dea58e0f'
-    if 'username' in request.GET:
-        platform = request.GET['platform']
-        username = request.GET['username']
-        url = 'https://api.fortnitetracker.com/v1/profile/%s'%platform+'/%s/'%username
+class FortniteView(TemplateView):
+    template_name = 'fortniteData.html'
 
-        headers = {'TRN-Api-Key': KEY}
-        response = requests.get(url, headers=headers)
-        key_array = ['Score', 'Matches Played', 'Wins', 'Win%', 'Kills', 'K/d']
-        # key_array = key_array.json()
-        if response.status_code == 200:
-            user = response.json()
-            return render(request, 'user-details.html',{'data': user, 'key_array': key_array})
-    return render(request, 'fortniteData.html', {'user': user})
+    def get(self, request, *args, **kwargs):
+        user = {}
+        KEY = '3ffdffa5-7f61-4b2d-a21a-e3c0dea58e0f'
+        if 'username' in request.GET:
+            platform = request.GET['platform']
+            username = request.GET['username']
+            url = 'https://api.fortnitetracker.com/v1/profile/%s' % platform + '/%s/' % username
+
+            headers = {'TRN-Api-Key': KEY}
+            response = requests.get(url, headers=headers)
+            key_array = ['Score', 'Matches Played', 'Wins', 'Win%', 'Kills', 'K/d']
+            # key_array = key_array.json()
+            if response.status_code == 200:
+                user = response.json()
+                return render(request, 'user-details.html', {'data': user, 'key_array': key_array})
+        return render(request, 'fortniteData.html', {'user': user})
 
 
 class BlogView(TemplateView):
@@ -50,6 +53,7 @@ class CosmeticsView(TemplateView):
 
 class WeaponsView(TemplateView):
     template_name = 'weapons.html'
+
     def get(self, request, *args, **kwargs):
         weapons_results = Weapons.objects.all()
         args = {'weapons': weapons_results}

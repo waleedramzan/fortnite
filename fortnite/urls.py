@@ -20,11 +20,11 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import static
 
 from fortniteApp import views
-from fortniteApp.views import BlogView
+from fortniteApp.views import BlogView, FortniteView
 
 urlpatterns = [
-    path('fortniteApp/', include('fortniteApp.urls')),
-    url(r'blog', BlogView.as_view(), name='index'),
+    url(r'^$', FortniteView.as_view(), name='index'),
+    path('fortnite/', include('fortniteApp.urls')),
     url(r'admin/', admin.site.urls),
     url(r'^mainbl/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
