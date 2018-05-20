@@ -24,9 +24,9 @@ from fortniteApp.views import BlogView
 
 urlpatterns = [
     path('fortniteApp/', include('fortniteApp.urls')),
-    url('blog', BlogView.as_view(), name='index'),
+    url(r'blog', BlogView.as_view(), name='index'),
     url(r'admin/', admin.site.urls),
-    url(r'^weblog/', include('zinnia.urls')),
+    url(r'^mainbl/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
 ]
 # + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

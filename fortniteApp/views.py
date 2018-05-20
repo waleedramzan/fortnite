@@ -4,6 +4,7 @@ import requests
 from django.template import loader
 from django.urls import reverse
 from django.views.generic import TemplateView
+from zinnia.models import Entry
 
 from fortniteApp.models import *
 
@@ -28,6 +29,10 @@ def forniteData(request):
 
 class BlogView(TemplateView):
     template_name = "blog.html"
+
+    def get(self, request, *args, **kwargs):
+        entries = Entry.objects.all()
+        return render(request, self.template_name, {'entries': entries})
 
 
 class CosmeticsView(TemplateView):
