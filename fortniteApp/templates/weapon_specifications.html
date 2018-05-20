@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <section class="hero hero-game" style="background-image: url({% static 'img/hero/hero.jpg'%})">
+      <div class="hero-block">
+        <div class="hero-left">
+          <h2 class="hero-title">The Witcher 3: Wild Hunt</h2>
+          <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-t-30">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+            <div class="span12">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th> </th>
+                            <th>Common</th>
+                            <th>Un Common</th>
+                            <th>Rare</th>
+                            <th>Epic</th>
+                            <th>Legendry</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                     <td>DPS</td>
+                        {% for specs in weapon_details %}
+                            <td>{{ specs.dps }}</td>
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Damage</td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.damage }}</td>
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Env. Damage</td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.env_damage }}</td>
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Fire Rate</td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.fire_rate }}</td>
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Magazine</td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.magazine }}</td>
+
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Reload Time </td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.reload_time }}</td>
+
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Body Shot</td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.body_shoot }}</td>
+
+                        {% endfor %}
+                     </tr>
+                     <tr>
+                     <td>Head Shot</td>
+                        {% for specs in weapon_details %}
+                                <td>{{ specs.head_shoot }}</td>
+                        {% endfor %}
+                     </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-lg-4">
+          <!-- sidebar -->
+          <div class="sidebar">
+            <!-- widget game -->
+            <div class="widget widget-game">
+              <div class="widget-block" style="background-image: url({{ weapon.image.url }})">
+                <div class="overlay"></div>
+                <div class="widget-item">
+                  <h4>{{ weapon.title }}</h4>
+                  <span class="meta">Released:{{ weapon.release_date }}</span>
+
+                  <h5>Rarities</h5>
+                    {% if weapon_details|length == 1 %}
+                        <a href="#"><span class="badge badge-secondary">Common</span></a>
+                    {% elif weapon_details|length == 2 %}
+                        <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        <a href="#"><span class="badge badge-info">Un Common</span></a>
+                    {% elif weapon_details|length == 3 %}
+                        <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        <a href="#"><span class="badge badge-info">Un Common</span></a>
+                        <a href="#"><span class="badge badge-success">Rare</span></a>
+                    {% elif weapon_details|length == 4 %}
+                        <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        <a href="#"><span class="badge badge-info">Un Common</span></a>
+                        <a href="#"><span class="badge badge-success">Rare</span></a>
+                        <a href="#"><span class="badge badge-warning"style="margin-top: 10px">Epic</span></a>
+
+                    {% elif weapon_details|length == 5 %}
+                        <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        <a href="#"><span class="badge badge-info">Un Common</span></a>
+                        <a href="#"><span class="badge badge-success">Rare</span></a>
+                        <a href="#"><span class="badge badge-warning" style="margin-top: 10px">Epic</span></a>
+                        <a href="#"><span class="badge badge-danger">Legendary</span></a>
+
+                    {% endif %}
+                  <h5>Developed</h5>
+                  <p style="margin: 0px !important;">{{ weapon.bullets_used }}</p>
+
+                  <h5>Description</h5>
+                  <p style="margin: 0px !important;">{{ weapon.decsription }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /main -->
+{% endblock %}

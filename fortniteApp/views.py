@@ -58,3 +58,14 @@ class WeaponsView(TemplateView):
         weapons_results = Weapons.objects.all()
         args = {'weapons': weapons_results}
         return render(request, self.template_name, args)
+
+
+class WeaponSpecificationsView(TemplateView):
+    template_name = 'weapon_specifications.html'
+
+    def get(self, request, *args, **kwargs):
+        selected_weapon = self.kwargs['weapon_id']
+        weapon_specs_object = WeaponSpecifications.objects.filter(weapon_id=selected_weapon).order_by('weapon_rarity_type')
+        weapon_object = Weapons.objects.get(id=selected_weapon)
+        args = {'weapon_details': weapon_specs_object , 'weapon':weapon_object}
+        return render(request, self.template_name, args)

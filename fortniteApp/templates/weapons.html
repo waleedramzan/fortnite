@@ -29,13 +29,13 @@
                   <div class="col-12 col-sm-6 col-md-4">
                       <div class="card card-lg">
                         <div class="card-img">
-                          <a href="game-post.html">
+                          <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">
                           <img src="{{ weapon.image.url }}" class="card-img-top">
                         </a>
                         </div>
                         <div class="card-block">
                           <h4 class="card-title">
-                            <a href="game-post.html">{{ weapon.title }}</a>
+                            <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">{{ weapon.title }}</a>
                           </h4>
                           <div class="card-meta">
                             <span>June 13, 2017</span>
@@ -48,15 +48,12 @@
               {% else %}
                 <h4>No weapon found</h4>
           {% endif %}
-
-
       </div>
     </div>
   </section>
 {% endblock %}
 
 {% block js %}
-  <!-- vendor js -->
   <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js'%}"></script>
   <script src="{% static 'plugins/popper/popper.min.js'%}"></script>
   <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js'%}"></script>
