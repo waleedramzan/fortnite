@@ -8,19 +8,6 @@ from django.views.generic import TemplateView
 from fortniteApp.models import *
 
 
-def index(request):
-    template = loader.get_template("blog.html")
-    return HttpResponse(template.render())
-
-def getData(request):
-    response = requests.get('http://freegeoip.net/json/')
-    geodata = response.json()
-    return render(request, 'getData.html', {
-        'ip': geodata['ip'],
-        'country': geodata['country_name']
-    })
-
-
 def forniteData(request):
     user = {}
     KEY = '3ffdffa5-7f61-4b2d-a21a-e3c0dea58e0f'
@@ -39,8 +26,8 @@ def forniteData(request):
     return render(request, 'fortniteData.html', {'user': user})
 
 
-def nextLink(request, *args, **kwargs):
-    pass
+class BlogView(TemplateView):
+    template_name = "blog.html"
 
 
 class CosmeticsView(TemplateView):

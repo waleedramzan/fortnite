@@ -20,14 +20,16 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import static
 
 from fortniteApp import views
+from fortniteApp.views import BlogView
 
 urlpatterns = [
     path('fortniteApp/', include('fortniteApp.urls')),
-    url('blog', views.index, name='index'),
+    url('blog', BlogView.as_view(), name='index'),
     url(r'admin/', admin.site.urls),
-    # url(r'^blog/', include('zinnia.urls')),
+    url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
