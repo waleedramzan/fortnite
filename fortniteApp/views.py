@@ -27,7 +27,9 @@ class FortniteView(TemplateView):
             if response.status_code == 200:
                 user = response.json()
                 return render(request, 'user-details.html', {'data': user, 'key_array': key_array})
-        return render(request, 'fortniteData.html', {'user': user})
+        else:
+            entree = Entry.objects.first()
+        return render(request, 'fortniteData.html', {'user': user, 'entree': entree})
 
 
 class BlogView(TemplateView):
