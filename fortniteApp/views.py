@@ -71,3 +71,14 @@ class WeaponSpecificationsView(TemplateView):
         weapon_object = Weapons.objects.get(id=selected_weapon)
         args = {'weapon_details': weapon_specs_object , 'weapon':weapon_object}
         return render(request, self.template_name, args)
+
+
+class MediaView(TemplateView):
+    template_name = 'media_page.html'
+
+    def get(self, request, *args, **kwargs):
+        cosmetics_results = Cosmetics.objects.all()
+
+        args = {'cosmetics': cosmetics_results}
+
+        return render(request, self.template_name, args)

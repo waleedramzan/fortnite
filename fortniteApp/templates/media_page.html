@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="toolbar toolbar-links">
+    <div class="container">
+      <h5>Media <span>({{ cosmetics|length }})</span></h5>
+      <div class="dropdown float-right">
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item active" href="#">Recent</a>
+          <a class="dropdown-item" href="#">Popular</a>
+          <a class="dropdown-item" href="#">Platforms</a>
+        </div>
+      </div>
+      <ul class="toolbar-nav hidden-md-down m-r-25">
+        <li><a href="game-post.html">Articles</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li class="active"><a href="gallery.html">Images</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Streams</a></li>
+        <li><a href="#">Cheats &amp; Guides</a></li>
+        <li><a href="#">Forum</a></li>
+      </ul>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+      <div class="row row-3 figure-effect">
+      {% if cosmetics %}
+          {% for cosmetic in cosmetics  %}
+                <div class="col-12 col-sm-6 col-md-4">
+                  <figure>
+                    <div class="figure-img">
+                      <a href="{{ cosmetic.image.url }}" data-lightbox='{"disqus": true}'>
+                      <img src="{{ cosmetic.image.url }}" alt="">
+                    </a>
+                    </div>
+                  </figure>
+                </div>
+            {% endfor %}
+          {% else %}
+                <h4>Currently No Item found</h4>
+      {% endif %}
+      </div>
+    </div>
+</section>
+{% endblock %}
+{% block js %}
+    <!-- vendor js -->
+  <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'plugins/popper/popper.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+  <!-- plugins js -->
+  <script src="{% static 'plugins/lightbox/lightbox.js' %}"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // lightbox
+      $('[data-lightbox]').lightbox({
+        disqus: 'gameforestyakuzieu'
+      });
+    })(jQuery);
+  </script>
+
+     <!-- plugins js -->
+  <script src="{% static 'plugins/owl-carousel/js/owl.carousel.min.js' %}"></script>
+  <script>
+    (function($) {
+      "use strict";
+      // owl carousel
+      $('.owl-posts').owlCarousel({
+        margin: 5,
+        loop: true,
+        dots: false,
+        autoplay: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          1024: {
+            items: 1,
+            center: false
+          },
+          1200: {
+            items: 2,
+            center: true
+          }
+        }
+      });
+
+      $('.owl-videos').owlCarousel({
+        margin: 15,
+        loop: true,
+        dots: false,
+        responsive: {
+          0: {
+            items: 1
+          },
+          700: {
+            items: 2
+          },
+          800: {
+            items: 3
+          },
+          1000: {
+            items: 4
+          },
+          1200: {
+            items: 6
+          }
+        }
+      });
+    })(jQuery);
+  </script>
+
+
+  <!-- theme js -->
+  <script src="{% static 'js/theme.min.js' %}"></script>
+{% endblock %}
