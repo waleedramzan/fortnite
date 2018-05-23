@@ -14,6 +14,7 @@ class FortniteView(TemplateView):
     def get(self, request, *args, **kwargs):
         user = {}
         KEY = '3ffdffa5-7f61-4b2d-a21a-e3c0dea58e0f'
+        home_banner = HomePageBanner.objects.latest('created_at')
         if 'username' in request.GET:
             platform = request.GET['platform']
             username = request.GET['username']
@@ -28,7 +29,7 @@ class FortniteView(TemplateView):
                 return render(request, 'user-details.html', {'data': user, 'key_array': key_array})
         else:
             entree = Entry.objects.first()
-        return render(request, 'fortniteData.html', {'user': user, 'entree': entree})
+        return render(request, 'fortniteData.html', {'user': user, 'entree': entree, 'home_banner': home_banner})
 
 
 class BlogView(TemplateView):
@@ -57,7 +58,7 @@ class WeaponsView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         weapons_results = Weapons.objects.all()
-        weapon_banner = WeaponsBanner.objects.get()
+        weapon_banner = WeaponsBanner.objects.latest('created_at')
         weapon_category = WeaponCategory.objects.all()
 
         args = {'weapons': weapons_results , 'weapon_banner': weapon_banner, 'weapon_categories': weapon_category}

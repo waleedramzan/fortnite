@@ -87,3 +87,9 @@ class WeaponsBanner(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class HomePageBanner(models.Model):
+    image = models.ImageField(upload_to='homepage_banner')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
