@@ -1,10 +1,9 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 import requests
-from django.template import loader
-from django.urls import reverse
 from django.views.generic import TemplateView
 from zinnia.models import Entry
+import datetime
+from datetime import timedelta
 
 from fortniteApp.models import *
 
@@ -42,11 +41,11 @@ class CosmeticsView(TemplateView):
     template_name = 'cosmetics.html'
 
     def get(self, request, *args, **kwargs):
-        # return Cosmetics.objects.all()
         cosmetics_results = Cosmetics.objects.all()
-        banner_results = CosmeticsBanner.objects.all()
+        primary_banner = CosmeticsPrimaryBanner.objects.filter(expiry_date__gt=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        secondary_banner = CosmeticSecondaryBanner.objects.filter(expiry_date__gt=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-        args = {'cosmetics': cosmetics_results, 'banners': banner_results}
+        args = {'cosmetics': cosmetics_results, 'banners': primary_banner, 'secondaryBanner': secondary_banner}
 
         return render(request, self.template_name, args)
 
@@ -56,7 +55,10 @@ class WeaponsView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         weapons_results = Weapons.objects.all()
-        args = {'weapons': weapons_results}
+        weapon_banner = WeaponsBanner.objects.get()
+        weapon_category = WeaponCategory.objects.all()
+
+        args = {'weapons': weapons_results , 'weapon_banner': weapon_banner, 'weapon_categories': weapon_category}
         return render(request, self.template_name, args)
 
 

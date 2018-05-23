@@ -19,7 +19,6 @@ from django.urls import include, path
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 
-from fortniteApp import views
 from fortniteApp.views import BlogView, FortniteView
 
 urlpatterns = [

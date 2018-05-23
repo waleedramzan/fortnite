@@ -7,15 +7,18 @@
         {% if banners %}
           {% for banner in banners  %}
               <div class="post-carousel">
-                <a href="blog-post.html"><img src="{{ banner.image.url }}" alt=""></a>
+              <div class="text-block">
+                <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: #f8f9fa; position: absolute;padding: 25px; font-weight: bold"></p>
+              </div>
+                <a href="#"><img src="{{ banner.image.url }}" alt=""></a>
                 <span class="badge badge-ps4">{{ banner.platform }}</span>
                 <div class="post-block">
                   <div class="post-caption">
                     <h2 class="post-title">
-                      <a href="blog-post.html">{{ banner.title }}</a>
+                      <a href="#">{{ banner.title }}</a>
                     </h2>
                     <div class="post-meta">
-                      <span><i class="fa fa-clock-o"></i>{{ banner.date }}</span>
+                      <span><i class="fa fa-clock-o"></i>{{ banner.created_at }}</span>
                     </div>
                   </div>
                 </div>
@@ -25,6 +28,31 @@
             <h4>No Banner Found</h4>
         {% endif %}
     </div>
+</section>
+
+<section class="bg-secondary p-t-15 p-b-5 p-x-15">
+<div class="owl-carousel owl-videos">
+    {% if secondaryBanner %}
+        {% for secondary_banner in secondaryBanner %}
+        <div class="card card-video">
+            <div class="card-img">
+                <div class="text-block">
+                <p class="sec_banner{{ banner.id }}  top-left" style="font-size:10px; color: #f8f9fa; position: absolute;padding: 15px; font-weight: bold"></p>
+              </div>
+              <a href="#">
+              <img src="{{ secondary_banner.image.url }}" style="height: 125px; width: 200px">
+            </a>
+            </div>
+            <div class="card-block" style="margin-bottom: 30px">
+              <h4 class="card-title"><a href="#">{{ secondary_banner.title }}</a></h4>
+            </div>
+          </div>
+    {% endfor %}
+     {% else %}
+        <h4>No Secondary Banner Found</h4>
+    {% endif %}
+
+</div>
 </section>
 
 <section class="toolbar toolbar-links">
@@ -139,7 +167,59 @@
         }
       });
     })(jQuery);
+
   </script>
+    <script>
+        // Set the date we're counting down to
+
+        {% if banners %}
+            {% for banner in banners %}
+                myFunction("{{ banner.expiry_date|escapejs }}","banner{{ banner.id }}");
+            {% endfor %}
+        {% endif %}
+
+        {% if secondaryBanner %}
+            {% for secondary_banner in secondaryBanner %}
+                myFunction("{{ secondary_banner.expiry_date|escapejs }}","sec_banner{{ banner.id }}");
+            {% endfor %}
+        {% endif %}
+
+        {#myFunction( "2018-05-31 06:00:00+00:00","banner1");#}
+        {#myFunction( "2018-05-26 12:00:00+00:00","banner2");#}
+
+        function myFunction(date,id) {
+            var countDownDate = new Date(date).getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            {#document.getElementsByClassName(id).innerHTML = days + "d " + hours + "h "#}
+            {#+ minutes + "m " + seconds + "s ";#}
+             $("body").find('.' + id).html(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementsByClassName(id).innerHTML = "EXPIRED";
+            }
+        }, 200);
+    return true;
+}
+
+</script>
 
 
   <!-- theme js -->

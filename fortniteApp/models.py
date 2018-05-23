@@ -5,27 +5,55 @@ class Cosmetics(models.Model):
     title = models.CharField(max_length=100)
     decsription = models.CharField(max_length=500)
     image = models.ImageField(upload_to='cosmetics_images')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
 
 
-class CosmeticsBanner(models.Model):
+class CosmeticsPrimaryBanner(models.Model):
     title = models.CharField(max_length=200)
     platform = models.CharField(max_length=10)
     image = models.ImageField(upload_to='cosmetics_banners')
-    date = models.DateTimeField()
+    expiry_date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
 
 
+class CosmeticSecondaryBanner(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='cosmetics_banners')
+    expiry_date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+
+class WeaponCategory(models.Model):
+    category_name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.category_name
+
+
 class Weapons(models.Model):
+    weapon_category = models.ForeignKey(WeaponCategory, on_delete=models.CASCADE, related_name='weapons_category_related_name')
     title = models.CharField(max_length=50)
     decsription = models.CharField(max_length=500)
     image = models.ImageField(upload_to='weapon_images')
     release_date = models.DateField()
     bullets_used = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -43,6 +71,19 @@ class WeaponSpecifications(models.Model):
     reload_time = models.CharField(max_length=20)
     body_shoot = models.CharField(max_length=10)
     head_shoot = models.CharField(max_length=10)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.weapon_id.title
+
+
+class WeaponsBanner(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='weapon_banners')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title

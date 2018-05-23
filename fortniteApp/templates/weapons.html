@@ -1,58 +1,97 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-  <section class="hero hero-game" style="background-image: url('{% static 'img/hero/hero.jpg'%}');">
+  <section class="hero hero-game" style="background-image: url('{{ weapon_banner.image.url }}');">
     <div class="overlay"></div>
     <div class="container">
       <div class="hero-block">
         <div class="hero-left">
-          <h2 class="hero-title">The Witcher 3: Wild Hunt</h2>
-          <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
-        </div>
+          <h2 class="hero-title">{{ weapon_banner.title }}</h2>
+          <p>{{ weapon_banner.description }}</p>
+        </div>git a
       </div>
     </div>
   </section>
 
   <section class="p-t-30">
     <div class="container">
-      <div class="toolbar-custom">
-        <div class="btn-group float-right m-l-5 hidden-sm-down" role="group">
-          <a class="btn btn-default btn-icon" href="#" role="button"><i class="fa fa-th-large"></i></a>
-          <a class="btn btn-default btn-icon" href="#" role="button"><i class="fa fa-bars"></i></a>
-        </div>
-      </div>
 
-      <div class="row">
-          {% if weapons %}
-              {%  for weapon in weapons %}
-                  <div class="col-12 col-sm-6 col-md-4">
-                      <div class="card card-lg">
-                        <div class="card-img">
-                          <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">
-                          <img src="{{ weapon.image.url }}" class="card-img-top">
-                        </a>
-                        </div>
-                        <div class="card-block">
-                          <h4 class="card-title">
-                            <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">{{ weapon.title }}</a>
-                          </h4>
-                          <div class="card-meta">
-                            <span>June 13, 2017</span>
+
+    <section class="toolbar toolbar-links">
+          <ul class="toolbar-nav hidden-md-down m-r-25 nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">All</a></li>
+                {% for category in weapon_categories %}
+                    <li><a data-toggle="tab" href="#{{ category.category_name }}">{{ category.category_name }}</a></li>
+                {% endfor %}
+          </ul>
+    </section>
+
+     <div class="tab-content">
+        <div id="home" class="tab-pane fade in active show">
+          <h3>All</h3>
+
+            <div class="row">
+              {% if weapons %}
+                  {%  for weapon in weapons %}
+                      <div class="col-12 col-sm-6 col-md-4">
+                          <div class="card card-lg">
+                            <div class="card-img" style="border-left: 1px solid #E3E0E0; border-top: 1px solid #E3E0E0; border-right: 1px solid #E3E0E0;">
+                              <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">
+                              <img src="{{ weapon.image.url }}" class="card-img-top" style="width:450px;height:225px;">
+                            </a>
+                            </div>
+                            <div class="card-block">
+                              <h4 class="card-title">
+                                <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">{{ weapon.title }}</a>
+                              </h4>
+                              <div class="card-meta">
+                                <span>June 13, 2017</span>
+                              </div>
+                              <p class="card-text">{{ weapon.decsription }}</p>
+                            </div>
                           </div>
-                          <p class="card-text">{{ weapon.decsription }}</p>
                         </div>
-                      </div>
+                  {% endfor %}
+                  {% else %}
+                    <h4>No weapon found</h4>
+              {% endif %}
+          </div>
+
+    </div>
+  {% if weapon_categories %}
+      {% for wc in weapon_categories %}
+        <div id="{{ wc.category_name }}" class="tab-pane fade">
+          <h3>{{ wc.category_name }}</h3>
+          <div class="row">
+            {% for foo in wc.weapons_category_related_name.all %}
+                  <div class="col-12 col-sm-6 col-md-4">
+                  <div class="card card-lg">
+                    <div class="card-img" style="border-left: 1px solid #E3E0E0; border-top: 1px solid #E3E0E0; border-right: 1px solid #E3E0E0;">
+                      <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=foo.id %}">
+                      <img src="{{ foo.image.url }}" class="card-img-top" style="width:450px;height:225px;">
+                    </a>
                     </div>
+                    <div class="card-block">
+                      <h4 class="card-title">
+                        <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=foo.id %}">{{ wc.title }}</a>
+                      </h4>
+                      <div class="card-meta">
+                        <span>June 13, 2017</span>
+                      </div>
+                      <p class="card-text">{{ foo.decsription }}</p>
+                    </div>
+                  </div>
+                </div>
               {% endfor %}
-              {% else %}
-                <h4>No weapon found</h4>
-          {% endif %}
-      </div>
+          </div>
+        </div>
+     {% endfor %}
+     {% endif %}
+  </div>
+
     </div>
   </section>
 {% endblock %}
-
 {% block js %}
   <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js'%}"></script>
   <script src="{% static 'plugins/popper/popper.min.js'%}"></script>
