@@ -26,7 +26,9 @@ class FortniteView(TemplateView):
             if response.status_code == 200:
                 user = response.json()
                 return render(request, 'user-details.html', {'data': user, 'key_array': key_array})
-        return render(request, 'fortniteData.html', {'user': user})
+        else:
+            entree = Entry.objects.first()
+        return render(request, 'fortniteData.html', {'user': user, 'entree': entree})
 
 
 class BlogView(TemplateView):
@@ -70,4 +72,15 @@ class WeaponSpecificationsView(TemplateView):
         weapon_specs_object = WeaponSpecifications.objects.filter(weapon_id=selected_weapon).order_by('weapon_rarity_type')
         weapon_object = Weapons.objects.get(id=selected_weapon)
         args = {'weapon_details': weapon_specs_object , 'weapon':weapon_object}
+        return render(request, self.template_name, args)
+
+
+class MediaView(TemplateView):
+    template_name = 'media_page.html'
+
+    def get(self, request, *args, **kwargs):
+        cosmetics_results = Cosmetics.objects.all()
+
+        args = {'cosmetics': cosmetics_results}
+
         return render(request, self.template_name, args)
