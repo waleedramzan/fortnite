@@ -84,11 +84,11 @@
 .crowsal-form-custom {
     text-align: center;
     position: relative;
-    top: -15em;
+    top: -22em;
     z-index: 1;
 }
 .fortnite-logo-custom{
-    max-width: 50%;
+    max-width: 45%;
 }
 .logo-custom{
     height: auto !important;
@@ -109,4 +109,28 @@
     color: #eee;
     font-weight: bold;
     font-size: 25px;
+}
+@media (max-width: 576px){
+    .fortnite-logo-custom {
+        max-width: 18%;
+    }
+}
+@media (max-width: 650px){
+    .username-textbox-custom{
+        width: 15em;
+    }
+    .crowsal-form-custom{
+        /*top: -13em;*/
+    }
+}
+@media (max-width: 450px){
+    .username-textbox-custom{
+        width: 10em;
+    }
+}
+.main-home-inverse-section-custom{
+    background: transparent !important;
+}
+#footer .custom-footer-social a{
+    font-size: 30px;
 }
