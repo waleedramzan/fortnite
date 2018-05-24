@@ -86,8 +86,8 @@ class MediaView(TemplateView):
     template_name = 'media_page.html'
 
     def get(self, request, *args, **kwargs):
-        cosmetics_results = Cosmetics.objects.all()
+        media_results = Media.objects.all()
 
-        args = {'cosmetics': cosmetics_results}
+        args = {'cosmetics': media_results}
 
         return render(request, self.template_name, args)

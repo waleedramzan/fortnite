@@ -109,3 +109,14 @@ class HomePageBanner(models.Model):
     image = models.ImageField(upload_to='homepage_banner')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Media(models.Model):
+    title = models.CharField(max_length=100)
+    decsription = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='media_images')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
