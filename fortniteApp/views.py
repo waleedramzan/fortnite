@@ -14,7 +14,10 @@ class FortniteView(TemplateView):
     def get(self, request, *args, **kwargs):
         user = {}
         KEY = '3ffdffa5-7f61-4b2d-a21a-e3c0dea58e0f'
-        home_banner = HomePageBanner.objects.latest('created_at')
+        home_banner = ''
+        if HomePageBanner.objects.filter():
+            home_banner = HomePageBanner.objects.filter().order_by('-id')[0]
+
         if 'username' in request.GET:
             platform = request.GET['platform']
             username = request.GET['username']
@@ -58,7 +61,9 @@ class WeaponsView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         weapons_results = Weapons.objects.all()
-        weapon_banner = WeaponsBanner.objects.latest('created_at')
+        weapon_banner = ''
+        if WeaponsBanner.objects.filter():
+            weapon_banner = WeaponsBanner.objects.filter().order_by('-id')[0]
         weapon_category = WeaponCategory.objects.all()
 
         args = {'weapons': weapons_results , 'weapon_banner': weapon_banner, 'weapon_categories': weapon_category}
