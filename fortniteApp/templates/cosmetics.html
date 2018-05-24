@@ -8,10 +8,20 @@
           {% for banner in banners  %}
               <div class="post-carousel">
               <div class="text-block">
-                <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: #f8f9fa; position: absolute;padding: 25px; font-weight: bold"></p>
+                <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: #f8f9fa; position: absolute;padding: 5px; font-weight: bold; border: 1px solid white;margin: 20px; border-radius: 10px"></p>
               </div>
                 <a href="#"><img src="{{ banner.image.url }}" alt=""></a>
-                <span class="badge badge-ps4">{{ banner.platform }}</span>
+                  {% if banner.rarity == 'COMMON' %}
+                    <span class="badge badge-secondary">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'UNCOMMON' %}
+                    <span class="badge badge-info">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'RARE' %}
+                    <span class="badge badge-success">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'EPIC' %}
+                    <span class="badge badge-warning">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'LEGENDARY' %}
+                    <span class="badge badge-danger">{{ banner.rarity }}</span>
+                  {% endif %}
                 <div class="post-block">
                   <div class="post-caption">
                     <h2 class="post-title">
@@ -37,7 +47,7 @@
         <div class="card card-video">
             <div class="card-img">
                 <div class="text-block">
-                <p class="sec_banner{{ banner.id }}  top-left" style="font-size:10px; color: #f8f9fa; position: absolute;padding: 15px; font-weight: bold"></p>
+                <p class="sec_banner{{ secondary_banner.id }}" style="font-size:10px; color: #f8f9fa; position: absolute;padding-left: 3px; padding-right: 3px; margin: 12px; font-weight: bold; border: 1px solid white; border-radius: 7px"></p>
               </div>
               <a href="#">
               <img src="{{ secondary_banner.image.url }}" style="height: 125px; width: 200px">
@@ -180,7 +190,7 @@
 
         {% if secondaryBanner %}
             {% for secondary_banner in secondaryBanner %}
-                myFunction("{{ secondary_banner.expiry_date|escapejs }}","sec_banner{{ banner.id }}");
+                myFunction("{{ secondary_banner.expiry_date|escapejs }}","sec_banner{{ secondary_banner.id }}");
             {% endfor %}
         {% endif %}
 

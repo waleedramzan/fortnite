@@ -1,5 +1,12 @@
 from django.db import models
 
+RARITY_CHOICES = (
+    ('COMMON','Common'),
+    ('UNCOMMON', 'Uncommon'),
+    ('RARE','Rare'),
+    ('EPIC','Epic'),
+    ('LEGENDARY','Legendary'),
+)
 
 class Cosmetics(models.Model):
     title = models.CharField(max_length=100)
@@ -14,7 +21,7 @@ class Cosmetics(models.Model):
 
 class CosmeticsPrimaryBanner(models.Model):
     title = models.CharField(max_length=200)
-    platform = models.CharField(max_length=10)
+    rarity = models.CharField(max_length=9,choices=RARITY_CHOICES, default='grey')
     image = models.ImageField(upload_to='cosmetics_banners')
     expiry_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -88,6 +95,15 @@ class WeaponsBanner(models.Model):
     def __str__(self):
         return self.title
 
+class WeaponsSpecificationsBanner(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='weapon_banners')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
 
 class HomePageBanner(models.Model):
     image = models.ImageField(upload_to='homepage_banner')
