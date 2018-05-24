@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-  <section class="hero hero-game" style="background-image: url({% static 'img/hero/hero.jpg'%})">
+  <section class="hero hero-game" style="background-image: url({{ specs_banner.image.url }})">
       <div class="hero-block">
-        <div class="hero-left">
-          <h2 class="hero-title">The Witcher 3: Wild Hunt</h2>
-          <p>The world is in chaos. The air is thick with tension and the smoke of burnt villages.</p>
+        <div class="hero-left" style="padding-left: 60px;">
+          <h2 class="hero-title">{{ specs_banner.title }}</h2>
+          <p>{{ specs_banner.description }}</p>
         </div>
       </div>
     </div>
@@ -17,15 +17,35 @@
       <div class="row">
         <div class="col-lg-8">
             <div class="span12">
-                <table class="table table-condensed table-hover">
-                    <thead>
+                <table class="table table-condensed table-hover custom-specs-styling">
+                <thead>
                         <tr>
                             <th> </th>
-                            <th style="color: darkgray">Common</th>
-                            <th style="color: cornflowerblue">Un Common</th>
-                            <th style="color: green">Rare</th>
-                            <th style="color: gold">Epic</th>
-                            <th style="color: red">Legendry</th>
+                            <th>
+                                <div class="badge badge-secondary">
+                                    Common
+                                </div>
+                                </th>
+                            <th>
+                                <div class="badge badge-info">
+                                    Un Common
+                                </div>
+                            </th>
+                            <th>
+                                <div class="badge badge-success">
+                                    Rare
+                                </div>
+                            </th>
+                            <th>
+                                <div class="badge badge-warning">
+                                    Epic
+                                </div>
+                            </th>
+                            <th>
+                                <div class="badge badge-danger">
+                                    Legendary
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
