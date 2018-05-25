@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Fortnite Go</title>
     {% block css %}
+        <link rel="stylesheet" href="{% static 'css/dropPin.css' %}" type="text/css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
         <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'plugins/animate/animate.min.css' %}">
@@ -40,7 +41,7 @@
                   <li><a href="/fortnite/weapons">Weapons</a></li>
                   <li><a href="/fortnite/blog">Updates</a></li>
                   <li><a href="/fortnite/cosmetics">Cosmetics</a></li>
-                  <li><a href="/map">Map</a></li>
+                  <li><a href="/fortnite/map">Map</a></li>
                   <li><a href="/fortnite/media">Media</a></li>
                   <li><a href="/app">App</a></li>
                   <li><a href="/items">Items</a></li>
@@ -195,6 +196,19 @@
 
   <!-- theme js -->
   <script src="{% static 'js/theme.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/dropPin.js' %}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+            $('#map').dropPin({
+                fixedHeight:750,
+                fixedWidth:2048,
+                backgroundImage: '{% static 'img/map/S4Map.png' %}',
+                pin: '{% static 'img/map/defaultpin.png' %}'
+            });
+        });
+           </script>
     {% endblock %}
 </body>
 </html>

@@ -162,3 +162,14 @@
 .custom-specs-styling thead{}
 .custom-specs-styling thead tr{}
 .custom-specs-styling thead tr th{}
+
+.map-main {
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    width: 70%;
+}
+#map{
+    background-size: contain;
+}
+.map-class{}

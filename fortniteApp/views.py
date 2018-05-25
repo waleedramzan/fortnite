@@ -91,3 +91,7 @@ class MediaView(TemplateView):
         args = {'cosmetics': media_results}
 
         return render(request, self.template_name, args)
+
+
+class MapView(TemplateView):
+    template_name = 'map.html'
