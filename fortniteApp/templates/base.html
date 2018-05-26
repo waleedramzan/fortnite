@@ -198,17 +198,65 @@
   <script src="{% static 'js/theme.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/dropPin.js' %}"></script>
 
+
         <script type="text/javascript">
             $(document).ready(function() {
 
-            $('#map').dropPin({
+            // show single saved drop pin on map
+
+            {#$('#map').dropPin('showPin',{#}
+            {#    fixedHeight:750,#}
+            {#    fixedWidth:750,#}
+            {#    backgroundImage: '{% static 'img/map/S4Map.png' %}',#}
+            {#    pin: '{% static 'img/map/defaultpin.png' %}',#}
+            {#    pinX:225.09375,#}
+            {#    pinY:105,#}
+            //});
+
+
+            // show multiple saved drop pins on map
+
+            $('#map').dropPin('showPins',{
                 fixedHeight:750,
-                fixedWidth:2048,
+                fixedWidth:750,
                 backgroundImage: '{% static 'img/map/S4Map.png' %}',
-                pin: '{% static 'img/map/defaultpin.png' %}'
-            });
+                pin: '{% static 'img/map/defaultpin.png' %}',
+                cursor: 'pointer',
+                pinclass: 'qtipinfo',
+                pinDataSet:'{"markers":{{ marked_locations }} }'
+                {#pinDataSet: '{"markers": '.json_encode({{ marked_locations }})+'}'#}
+            })
+            //{
+
+
+            // Below code is to show and save drop pin on map
+
+               $('#map').dropPin({
+                    fixedHeight:750,
+                    fixedWidth:750,
+                    backgroundImage: '{% static 'img/map/S4Map.png' %}',
+                    pin: '{% static 'img/map/defaultpin.png' %}'
+                });
+
+
+              {#$('#map').click(function(e) {#}
+              {# var URL = "{% url 'fortniteApp:map' %}";#}
+              {#  var offset = $(this).offset();#}
+              {#  var x_cord = e.pageX - offset.left;#}
+              {#  var y_cord = e.pageY - offset.top;#}
+              {##}
+              {#  var data = {'x_cord': x_cord, 'y_cord': y_cord};#}
+              {##}
+              {#  $.post(URL, data, function(response){#}
+              {#      if(response === 'success'){#}
+              {#          alert('Yay!');#}
+              {#      }#}
+              {#  });#}
+              //});
         });
-           </script>
+
+        </script>
+
     {% endblock %}
 </body>
 </html>

@@ -11,5 +11,5 @@ urlpatterns = [
     url('weapons/$', WeaponsView.as_view(), name='weapons'),
     url('weapon_specifications/(?P<weapon_id>\d+)/$', WeaponSpecificationsView.as_view(), name='weapon_specifications'),
     url('media', MediaView.as_view(), name='media'),
-    url('map', MapView.as_view(), name='map'),
+    url('map', views.map_view, name='map'),
 ]

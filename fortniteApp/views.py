@@ -1,9 +1,13 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 import requests
-from django.views.generic import TemplateView
+from django.template import loader
+from django.views import View
+from django.views.generic import TemplateView, RedirectView, CreateView
 from zinnia.models import Entry
 import datetime
 from datetime import timedelta
+from django.views.decorators.csrf import csrf_exempt
 
 from fortniteApp.models import *
 
@@ -92,6 +96,24 @@ class MediaView(TemplateView):
 
         return render(request, self.template_name, args)
 
-
-class MapView(TemplateView):
+@csrf_exempt
+def map_view(request):
     template_name = 'map.html'
+    if request.method == 'POST':
+        map_coordinates = MapCoordinates()
+        map_coordinates.x_coordinate = request.POST['x_cord']
+        map_coordinates.y_coordinate = request.POST['y_cord']
+        map_coordinates.save()
+
+    all_marked_locations = MapCoordinates.objects.filter()
+    map_pins =[]
+    for foo in all_marked_locations:
+        pin_info = {}
+        pin_info['id'] = foo.id
+        pin_info['xcoord'] = foo.x_coordinate
+        pin_info['ycoord'] = foo.y_coordinate
+        map_pins.append(pin_info)
+
+    # also tried to pass pin_info in arguments
+    args = {'marked_locations': map_pins}
+    return render(request,template_name,args)
