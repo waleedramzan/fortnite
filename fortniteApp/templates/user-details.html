@@ -71,40 +71,170 @@
     <div class="custom-table-style">
     <h3 class="statis-heading">Life Time Stats</h3>
         <ul>
-            {% for index in data.lifeTimeStats %}
-                {% if index.key in key_array %}
-                    <li>
-                        <h5>{{ index.key }}</h5>
-                        <p>{{ index.value }}</p>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="custom-table-style recent-matches-custom">
-    <h3 class="statis-heading">Recent Matches</h3>
-        {% for index in data.recentMatches %}
-        <ul>
+            <li>
+                <h5>Score</h5>
+                <p>{{ data.totals.score }}</p>
+            </li>
+            <li>
+                <h5>Minutes Played</h5>
+                <p>{{ data.totals.minutesplayed }}</p>
+            </li>
             <li>
                 <h5>Kills</h5>
-                <p>{{ index.kills }}</p>
+                <p>{{ data.totals.kills }}</p>
             </li>
-                <li>
-                <h5>Minutes Played</h5>
-                <p>{{ index.minutesPlayed }}</p>
+            <li>
+                <h5>K/d</h5>
+                <p>{{ data.totals.kd }}</p>
             </li>
-                <li>
-                <h5>Matches</h5>
-                <p>{{ index.matches }}</p>
+            <li>
+                <h5>Last update</h5>
+                <p>{{ data.totals.lastupdate }}</p>
             </li>
-                <li>
-                <h5>Score</h5>
-                <p>{{ index.score }}</p>
+            <li>
+                <h5>Wins</h5>
+                <p>{{ data.totals.wins }}</p>
+            </li>
+            <li>
+                <h5>Winrate</h5>
+                <p>{{ data.totals.winrate }}</p>
+            </li>
+            <li>
+                <h5>Hours Played</h5>
+                <p>{{ data.totals.hoursplayed }}</p>
+            </li>
+            <li>
+                <h5>Matches Played</h5>
+                <p>{{ data.totals.matchesplayed }}</p>
             </li>
         </ul>
-        {% endfor %}
+
     </div>
+
+    <div class="custom-table-style">
+        <div class="row pricing">
+            <div class="col-md-4">
+                <div>
+                    <h3 class="solo_heading_bg"><b>SOLOS</b></h3>
+                    <div class="well user_stats_table">
+                        <p class="new_table_title">Winrate</p>
+                        <p class="new_table_description">{{ data.stats.winrate_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Kills</p>
+                        <p class="new_table_description">{{ data.stats.kills_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Matches Played</p>
+                        <p class="new_table_description">{{ data.stats.matchesplayed_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Score</p>
+                        <p class="new_table_description">{{ data.stats.score_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">K/D</p>
+                        <p class="new_table_description">{{ data.stats.kd_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Top 10</p>
+                        <p class="new_table_description">{{ data.stats.placetop10_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Top 25</p>
+                        <p class="new_table_description">{{ data.stats.placetop25_solo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Minutes Played</p>
+                        <p class="new_table_description">{{ data.stats.minutesplayed_solo }}</p>
+                    </div>
+
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div>
+                    <h3 class="duos_heading_bg"><b>DUOS</b></h3>
+                    <div class="well user_stats_table">
+                        <p class="new_table_title">Winrate</p>
+                        <p class="new_table_description">{{ data.stats.winrate_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Kills</p>
+                        <p class="new_table_description">{{ data.stats.kills_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Matches Played</p>
+                        <p class="new_table_description">{{ data.stats.matchesplayed_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Score</p>
+                        <p class="new_table_description">{{ data.stats.score_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">K/D</p>
+                        <p class="new_table_description">{{ data.stats.kd_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Top 5</p>
+                        <p class="new_table_description">{{ data.stats.placetop5_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Top 12</p>
+                        <p class="new_table_description">{{ data.stats.placetop12_duo }}</p>
+                        <hr class="custom_hr">
+                        <p class="new_table_title">Minutes Played</p>
+                        <p class="new_table_description">{{ data.stats.minutesplayed_duo }}</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <h3 class="squads_heading_bg"><b>SQUADS</b></h3>
+                    <div class="well user_stats_table">
+                    <p class="new_table_title">Winrate</p>
+                    <p class="new_table_description">{{ data.stats.winrate_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">Kills</p>
+                    <p class="new_table_description">{{ data.stats.kills_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">Matches Played</p>
+                    <p class="new_table_description">{{ data.stats.matchesplayed_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">Score</p>
+                    <p class="new_table_description">{{ data.stats.score_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">K/D</p>
+                    <p class="new_table_description">{{ data.stats.kd_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">Top 3</p>
+                    <p class="new_table_description">{{ data.stats.placetop3_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">Top 6</p>
+                    <p class="new_table_description">{{ data.stats.placetop6_squad }}</p>
+                    <hr class="custom_hr">
+                    <p class="new_table_title">Minutes Played</p>
+                    <p class="new_table_description">{{ data.stats.minutesplayed_squad }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{#    <div class="custom-table-style recent-matches-custom">#}
+{#    <h3 class="statis-heading">Recent Matches</h3>#}
+{#        {% for index in data.recentMatches %}#}
+{#        <ul>#}
+{#            <li>#}
+{#                <h5>Kills</h5>#}
+{#                <p>{{ index.kills }}</p>#}
+{#            </li>#}
+{#                <li>#}
+{#                <h5>Minutes Played</h5>#}
+{#                <p>{{ index.minutesPlayed }}</p>#}
+{#            </li>#}
+{#                <li>#}
+{#                <h5>Matches</h5>#}
+{#                <p>{{ index.matches }}</p>#}
+{#            </li>#}
+{#                <li>#}
+{#                <h5>Score</h5>#}
+{#                <p>{{ index.score }}</p>#}
+{#            </li>#}
+{#        </ul>#}
+{#        {% endfor %}#}
+{#    </div>#}
 </section>
 
   <!-- footer -->
@@ -163,12 +293,14 @@
   <!-- /footer -->
 
   <!-- vendor js -->
-  <script src="plugins/jquery/jquery-3.2.1.min.js"></script>
-  <script src="plugins/popper/popper.min.js"></script>
-  <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'plugins/popper/popper.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
   <!-- plugins js -->
-  <script src="plugins/lightbox/lightbox.js"></script>
+   <script src="{% static 'plugins/lightbox/lightbox.js' %}"></script>
   <script src="plugins/owl-carousel/js/owl.carousel.min.js"></script>
   <script>
     (function($) {

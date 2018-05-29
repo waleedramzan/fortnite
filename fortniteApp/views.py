@@ -4,6 +4,7 @@ import requests
 from django.template import loader
 from django.views import View
 from django.views.generic import TemplateView, RedirectView, CreateView
+from psycopg2.extensions import JSON
 from zinnia.models import Entry
 import datetime
 from datetime import timedelta
@@ -17,7 +18,7 @@ class FortniteView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         user = {}
-        KEY = '3ffdffa5-7f61-4b2d-a21a-e3c0dea58e0f'
+        entree = ''
         home_banner = ''
         if HomePageBanner.objects.filter():
             home_banner = HomePageBanner.objects.filter().order_by('-id')[0]
@@ -25,15 +26,31 @@ class FortniteView(TemplateView):
         if 'username' in request.GET:
             platform = request.GET['platform']
             username = request.GET['username']
-            url = 'https://api.fortnitetracker.com/v1/profile/%s' % platform + '/%s/' % username
+            headers = {
+                'authorization': 'a54432b15b52e4c14e2ac8d32994bca7',
+            }
+            url = 'https://fortniteapi.com/api/getUserID'
+            data = {
+                "username": username
+            }
 
-            headers = {'TRN-Api-Key': KEY}
-            response = requests.get(url, headers=headers)
-            key_array = ['Score', 'Matches Played', 'Wins', 'Win%', 'Kills', 'K/d']
+            response = requests.post(url,headers=headers, data=data)
+
             # key_array = key_array.json()
             if response.status_code == 200:
                 user = response.json()
-                return render(request, 'user-details.html', {'data': user, 'key_array': key_array})
+                user_id = user['uid']
+                next_url = 'https://fortniteapi.com/api/playerData'
+                new_data = {
+                    "user_id": user_id,
+                    "platform": platform,
+                    "window": "alltime"
+                }
+                new_response = requests.post(next_url, headers=headers, data=new_data)
+
+                if new_response.status_code == 200:
+                    user_profile = new_response.json()
+                    return render(request, 'user-details.html', {'data': user_profile})
         else:
             entree = Entry.objects.first()
         return render(request, 'fortniteData.html', {'user': user, 'entree': entree, 'home_banner': home_banner})
