@@ -133,9 +133,9 @@
 
 			this.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : "url('"+options.backgroundImage+"')",'height' : options.fixedHeight , 'width' : options.fixedWidth});
 
-			for(var i=0; i < (options.pinDataSet).markers.length; i++)
+			for(var i=0; i < options.pinDataSet.length; i++)
 			{
-				var dataPin = options.pinDataSet.markers[i];
+				var dataPin = options.pinDataSet[i];
 
 				var imgC = $('<img rel="/map-content.php?id='+dataPin.id+'" class="pin '+options.pinclass+'" style="top:'+dataPin.ycoord+'px;left:'+dataPin.xcoord+'px;">');
 				imgC.attr('src',  options.pin);

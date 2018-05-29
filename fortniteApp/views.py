@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render
 import requests
@@ -126,11 +128,10 @@ def map_view(request):
     map_pins =[]
     for foo in all_marked_locations:
         pin_info = {}
-        pin_info['id'] = foo.id
-        pin_info['xcoord'] = foo.x_coordinate
-        pin_info['ycoord'] = foo.y_coordinate
+        pin_info['id']=foo.id
+        pin_info['title']='map pin ' + str(foo.id)
+        pin_info['xcoord']=foo.x_coordinate
+        pin_info['ycoord']=foo.y_coordinate
         map_pins.append(pin_info)
-
-    # also tried to pass pin_info in arguments
     args = {'marked_locations': map_pins}
     return render(request,template_name,args)

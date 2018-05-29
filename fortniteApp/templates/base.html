@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +19,7 @@
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
         <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}">
         <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href={% static 'plugins/leaflet/leaflet.css' %} />
 
     {% endblock %}
 
@@ -196,67 +196,35 @@
 
   <!-- theme js -->
   <script src="{% static 'js/theme.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/dropPin.js' %}"></script>
+        <script src="{% static 'plugins/leaflet/leaflet.js' %}"></script>
 
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-
-            // show single saved drop pin on map
-
-            {#$('#map').dropPin('showPin',{#}
-            {#    fixedHeight:750,#}
-            {#    fixedWidth:750,#}
-            {#    backgroundImage: '{% static 'img/map/S4Map.png' %}',#}
-            {#    pin: '{% static 'img/map/defaultpin.png' %}',#}
-            {#    pinX:225.09375,#}
-            {#    pinY:105,#}
-            //});
-
-
-            // show multiple saved drop pins on map
-
-            $('#map').dropPin('showPins',{
-                fixedHeight:750,
-                fixedWidth:750,
-                backgroundImage: '{% static 'img/map/S4Map.png' %}',
-                pin: '{% static 'img/map/defaultpin.png' %}',
-                cursor: 'pointer',
-                pinclass: 'qtipinfo',
-                pinDataSet:'{"markers":{{ marked_locations }} }'
-                {#pinDataSet: '{"markers": '.json_encode({{ marked_locations }})+'}'#}
-            })
-            //{
-
-
-            // Below code is to show and save drop pin on map
-
-               $('#map').dropPin({
-                    fixedHeight:750,
-                    fixedWidth:750,
-                    backgroundImage: '{% static 'img/map/S4Map.png' %}',
-                    pin: '{% static 'img/map/defaultpin.png' %}'
-                });
-
-
-              {#$('#map').click(function(e) {#}
-              {# var URL = "{% url 'fortniteApp:map' %}";#}
-              {#  var offset = $(this).offset();#}
-              {#  var x_cord = e.pageX - offset.left;#}
-              {#  var y_cord = e.pageY - offset.top;#}
-              {##}
-              {#  var data = {'x_cord': x_cord, 'y_cord': y_cord};#}
-              {##}
-              {#  $.post(URL, data, function(response){#}
-              {#      if(response === 'success'){#}
-              {#          alert('Yay!');#}
-              {#      }#}
-              {#  });#}
-              //});
+        <script>
+        $(function(){
+            var map = L.map('map', {
+                crs: L.CRS.Simple,
+                minZoom: 0,
+                maxZoom: 4,
+                center: [0, 0],
+                zoom: 1
+            });
+            var bounds = [[0,0], [800,800]];
+            var image = L.imageOverlay('{% static 'img/map/S4Map.png' %}', bounds).addTo(map);
+            map.fitBounds(bounds);
+            map.on('click', function(e){
+                var URL = "{% url 'fortniteApp:map' %}";
+                var newMarker = new L.marker(e.latlng).addTo(map);
+               var data = {'x_cord': newMarker._latlng.lng, 'y_cord': newMarker._latlng.lat};
+               $.post(URL, data, function(response){
+                    if(response === 'success'){
+                        console.log('Yay!');
+                    }
+               });
+            });
+            {% for pin in marked_locations %}
+                L.marker([{{ pin.ycoord }},{{ pin.xcoord }}]).addTo(map);
+            {% endfor %}
         });
-
         </script>
-
     {% endblock %}
 </body>
 </html>
