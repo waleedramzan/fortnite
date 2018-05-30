@@ -210,19 +210,48 @@
             var bounds = [[0,0], [800,800]];
             var image = L.imageOverlay('{% static 'img/map/S4Map.png' %}', bounds).addTo(map);
             map.fitBounds(bounds);
-            map.on('click', function(e){
-                var URL = "{% url 'fortniteApp:map' %}";
-                var newMarker = new L.marker(e.latlng).addTo(map);
-               var data = {'x_cord': newMarker._latlng.lng, 'y_cord': newMarker._latlng.lat};
-               $.post(URL, data, function(response){
-                    if(response === 'success'){
-                        console.log('Yay!');
-                    }
-               });
-            });
+            {% if request.user.is_superuser %}
+                map.on('click', function(e){
+                    var URL = "{% url 'fortniteApp:map' %}";
+                    var newMarker = new L.marker(e.latlng).addTo(map);
+                    var data = {'x_cord': newMarker._latlng.lng, 'y_cord': newMarker._latlng.lat};
+                    $.post(URL, data, function(response){
+                        if(response === 'success'){
+                            console.log('Yay!');
+                        }
+                    });
+                });
+            {% endif %}
+
+            var markers = [];
+
             {% for pin in marked_locations %}
-                L.marker([{{ pin.ycoord }},{{ pin.xcoord }}]).addTo(map);
+                if (markers.length < 1) id = 0;
+                else id = markers[markers.length - 1]._id + 1;
+                var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+                myMarker = L.marker([{{ pin.ycoord }},{{ pin.xcoord }}]);
+                myMarker._id = {{ pin.id }};
+                var myPopup = myMarker.bindPopup(popupContent, {
+                    closeButton: false
+                });
+                map.addLayer(myMarker);
+                markers.push(myMarker);
             {% endfor %}
+            $(document).on("click","#pin-custom-id",function() {
+                var current_pin_id = parseInt($(this).val());
+                var URL = "{% url 'fortniteApp:map' %}";
+                markers.forEach(function(marker) {
+                    if (marker._id == current_pin_id){
+                        var data = {'remove': 1, 'marker_id': marker._id};
+                        map.removeLayer(marker);
+                        $.post(URL, data, function(response){
+                            if(response === 'success'){
+                                console.log('Yay!');
+                            }
+                        });
+                    }
+                });
+            });
         });
         </script>
     {% endblock %}

@@ -119,10 +119,14 @@ class MediaView(TemplateView):
 def map_view(request):
     template_name = 'map.html'
     if request.method == 'POST':
-        map_coordinates = MapCoordinates()
-        map_coordinates.x_coordinate = request.POST['x_cord']
-        map_coordinates.y_coordinate = request.POST['y_cord']
-        map_coordinates.save()
+        if 'remove' in request.POST:
+            pin = MapCoordinates.objects.get(id=int(request.POST['marker_id']))
+            pin.delete()
+        else:
+            map_coordinates = MapCoordinates()
+            map_coordinates.x_coordinate = request.POST['x_cord']
+            map_coordinates.y_coordinate = request.POST['y_cord']
+            map_coordinates.save()
 
     all_marked_locations = MapCoordinates.objects.filter()
     map_pins =[]
