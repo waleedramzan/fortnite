@@ -237,21 +237,23 @@
                 map.addLayer(myMarker);
                 markers.push(myMarker);
             {% endfor %}
-            $(document).on("click","#pin-custom-id",function() {
-                var current_pin_id = parseInt($(this).val());
-                var URL = "{% url 'fortniteApp:map' %}";
-                markers.forEach(function(marker) {
-                    if (marker._id == current_pin_id){
-                        var data = {'remove': 1, 'marker_id': marker._id};
-                        map.removeLayer(marker);
-                        $.post(URL, data, function(response){
-                            if(response === 'success'){
-                                console.log('Yay!');
-                            }
-                        });
-                    }
+            {% if request.user.is_superuser %}
+                $(document).on("click","#pin-custom-id",function() {
+                    var current_pin_id = parseInt($(this).val());
+                    var URL = "{% url 'fortniteApp:map' %}";
+                    markers.forEach(function(marker) {
+                        if (marker._id == current_pin_id){
+                            var data = {'remove': 1, 'marker_id': marker._id};
+                            map.removeLayer(marker);
+                            $.post(URL, data, function(response){
+                                if(response === 'success'){
+                                    console.log('Yay!');
+                                }
+                            });
+                        }
+                    });
                 });
-            });
+            {% endif %}
         });
         </script>
     {% endblock %}
