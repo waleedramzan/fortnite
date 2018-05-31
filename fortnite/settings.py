@@ -135,7 +135,7 @@ STATICFILES_DIRS = [                # For static files not particular to any app
     os.path.join(BASE_DIR, 'static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # MEDIA
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
