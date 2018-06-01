@@ -241,3 +241,21 @@
             /*float: none;*/
         /*}*/
 /*}*/
+.entry-title{
+
+}
+.blog_detail_custom{
+    padding: 5em;
+}
+.blog_detail_custom img{
+    max-width: 60%;
+}
+.entry-content{
+
+}
+.entry-content p{
+    width: 60%;
+}
+.entry-widgets, #pingbacks, #trackbacks, #comments, #comment-form{
+    display: none;
+}
