@@ -1,6 +1,10 @@
+<head>
+  <title>Weapons</title>
+</head>
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
   <section class="hero hero-game" style="background-image: url('{{ weapon_banner.image.url }}');">
     <div class="overlay"></div>
     <div class="container">
@@ -43,9 +47,6 @@
                               <h4 class="card-title">
                                 <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">{{ weapon.title }}</a>
                               </h4>
-                              <div class="card-meta">
-                                <span>June 13, 2017</span>
-                              </div>
                               <p class="card-text">{{ weapon.decsription }}</p>
                             </div>
                           </div>

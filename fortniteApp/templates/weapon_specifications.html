@@ -27,22 +27,22 @@
                                 </div>
                                 </th>
                             <th>
-                                <div class="badge badge-info">
+                                <div class="badge badge-success">
                                     Un Common
                                 </div>
                             </th>
                             <th>
-                                <div class="badge badge-success">
+                                <div class="badge badge-info">
                                     Rare
                                 </div>
                             </th>
                             <th>
-                                <div class="badge badge-warning">
+                                <div class="badge badge-warning" style="background-color: purple">
                                     Epic
                                 </div>
                             </th>
                             <th>
-                                <div class="badge badge-danger">
+                                <div class="badge badge-warning">
                                     Legendary
                                 </div>
                             </th>
@@ -123,26 +123,26 @@
                         <a href="#"><span class="badge badge-secondary">Common</span></a>
                     {% elif weapon_details|length == 2 %}
                         <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-info">Un Common</span></a>
+                        <a href="#"><span class="badge badge-success">Un Common</span></a>
                     {% elif weapon_details|length == 3 %}
                         <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-info">Un Common</span></a>
-                        <a href="#"><span class="badge badge-success">Rare</span></a>
+                        <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        <a href="#"><span class="badge badge-info">Rare</span></a>
                     {% elif weapon_details|length == 4 %}
                         <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-info">Un Common</span></a>
-                        <a href="#"><span class="badge badge-success">Rare</span></a>
-                        <a href="#"><span class="badge badge-warning"style="margin-top: 10px">Epic</span></a>
+                        <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        <a href="#"><span class="badge badge-info">Rare</span></a>
+                        <a href="#"><span class="badge badge-warning"style="margin-top: 10px; background-color: purple">Epic</span></a>
 
                     {% elif weapon_details|length == 5 %}
                         <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-info">Un Common</span></a>
-                        <a href="#"><span class="badge badge-success">Rare</span></a>
-                        <a href="#"><span class="badge badge-warning" style="margin-top: 10px">Epic</span></a>
-                        <a href="#"><span class="badge badge-danger">Legendary</span></a>
+                        <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        <a href="#"><span class="badge badge-info">Rare</span></a>
+                        <a href="#"><span class="badge badge-warning" style="margin-top: 10px; background-color: purple">Epic</span></a>
+                        <a href="#"><span class="badge badge-warning">Legendary</span></a>
 
                     {% endif %}
-                  <h5>Developed</h5>
+                  <h5>Bulletes Used</h5>
                   <p style="margin: 0px !important;">{{ weapon.bullets_used }}</p>
 
                   <h5>Description</h5>
@@ -151,6 +151,24 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-t-30">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+        <div id="disqus_thread"></div>
+            <script>
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://fortnitego-com.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
         </div>
       </div>
     </div>

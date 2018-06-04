@@ -23,6 +23,7 @@ class CosmeticsPrimaryBanner(models.Model):
     title = models.CharField(max_length=200)
     rarity = models.CharField(max_length=9,choices=RARITY_CHOICES, default='grey')
     image = models.ImageField(upload_to='cosmetics_banners')
+    description = models.CharField(max_length=250)
     expiry_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -33,6 +34,7 @@ class CosmeticsPrimaryBanner(models.Model):
 
 class CosmeticSecondaryBanner(models.Model):
     title = models.CharField(max_length=100)
+    rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='grey')
     description = models.CharField(max_length=250)
     image = models.ImageField(upload_to='cosmetics_banners')
     expiry_date = models.DateTimeField()
@@ -70,14 +72,14 @@ class WeaponSpecifications(models.Model):
     weapon_id = models.ForeignKey(Weapons, on_delete=models.CASCADE, related_name='weapons_related_name')
     # 1 for grey, 2 for green, 3 for blue, 4 for purple, 5 for gold
     weapon_rarity_type = models.IntegerField()
-    dps = models.CharField(max_length=10)
-    damage = models.CharField(max_length=10)
-    env_damage =  models.CharField(max_length=10)
-    fire_rate = models.CharField(max_length=10)
-    magazine = models.CharField(max_length=10)
-    reload_time = models.CharField(max_length=20)
-    body_shoot = models.CharField(max_length=10)
-    head_shoot = models.CharField(max_length=10)
+    dps = models.CharField(max_length=10,default='N/A')
+    damage = models.CharField(max_length=10,default='N/A')
+    env_damage =  models.CharField(max_length=10,default='N/A')
+    fire_rate = models.CharField(max_length=10,default='N/A')
+    magazine = models.CharField(max_length=10,default='N/A')
+    reload_time = models.CharField(max_length=20,default='N/A')
+    body_shoot = models.CharField(max_length=10,default='N/A')
+    head_shoot = models.CharField(max_length=10,default='N/A')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

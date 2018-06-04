@@ -259,3 +259,10 @@
 .entry-widgets, #pingbacks, #trackbacks, #comments, #comment-form{
     display: none;
 }
+.secondary-banner-rarity {
+    position: relative !important;
+    float: right;
+    margin-right: 38px !important;
+    font-size: 9px;
+    margin-top: -13px;
+}

@@ -1,3 +1,6 @@
+<head>
+  <title>Cosmetics</title>
+</head>
 {% extends 'base.html' %}
 {% load static %}
 
@@ -8,24 +11,24 @@
           {% for banner in banners  %}
               <div class="post-carousel">
               <div class="text-block">
-                <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: #f8f9fa; position: absolute;padding: 5px; font-weight: bold; border: 1px solid white;margin: 20px; border-radius: 10px"></p>
+                <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: red; position: absolute;padding: 5px; font-weight: bold; border: 1px solid red;margin: 20px; border-radius: 10px"></p>
               </div>
-                <a href="#"><img src="{{ banner.image.url }}" alt=""></a>
+                <a href="{{ banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners"}' ><img style="width: 700px; height: 350px" src="{{ banner.image.url }}" alt=""></a>
                   {% if banner.rarity == 'COMMON' %}
                     <span class="badge badge-secondary">{{ banner.rarity }}</span>
                   {% elif banner.rarity == 'UNCOMMON' %}
-                    <span class="badge badge-info">{{ banner.rarity }}</span>
-                  {% elif banner.rarity == 'RARE' %}
                     <span class="badge badge-success">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'RARE' %}
+                    <span class="badge badge-info">{{ banner.rarity }}</span>
                   {% elif banner.rarity == 'EPIC' %}
-                    <span class="badge badge-warning">{{ banner.rarity }}</span>
+                    <span class="badge badge-warning" style="background-color: purple">{{ banner.rarity }}</span>
                   {% elif banner.rarity == 'LEGENDARY' %}
-                    <span class="badge badge-danger">{{ banner.rarity }}</span>
+                    <span class="badge badge-warning">{{ banner.rarity }}</span>
                   {% endif %}
                 <div class="post-block">
                   <div class="post-caption">
                     <h2 class="post-title">
-                      <a href="#">{{ banner.title }}</a>
+                      <a href="{{ banner.image.url }}" data-lightbox='{"gallery": "cosmetics_banners"}'>{{ banner.title }}</a>
                     </h2>
                     <div class="post-meta">
                       <span><i class="fa fa-clock-o"></i>{{ banner.created_at }}</span>
@@ -49,12 +52,23 @@
                 <div class="text-block">
                 <p class="sec_banner{{ secondary_banner.id }}" style="font-size:10px; color: #f8f9fa; position: absolute;padding-left: 3px; padding-right: 3px; margin: 12px; font-weight: bold; border: 1px solid white; border-radius: 7px"></p>
               </div>
-              <a href="#">
+              <a href="{{ secondary_banner.image.url }}" data-lightbox='{"gallery": "cosmetics_images"}'>
               <img src="{{ secondary_banner.image.url }}" style="height: 125px; width: 200px">
             </a>
+                {% if secondary_banner.rarity == 'COMMON' %}
+                    <span class="badge badge-secondary secondary-banner-rarity">{{ secondary_banner.rarity }}</span>
+                  {% elif secondary_banner.rarity == 'UNCOMMON' %}
+                    <span class="badge badge-success secondary-banner-rarity">{{ secondary_banner.rarity }}</span>
+                  {% elif secondary_banner.rarity == 'RARE' %}
+                    <span class="badge badge-info secondary-banner-rarity">{{ secondary_banner.rarity }}</span>
+                  {% elif secondary_banner.rarity == 'EPIC' %}
+                    <span class="badge badge-warning secondary-banner-rarity" style="background-color: purple">{{ secondary_banner.rarity }}</span>
+                  {% elif secondary_banner.rarity == 'LEGENDARY' %}
+                    <span class="badge badge-warning secondary-banner-rarity">{{ secondary_banner.rarity }}</span>
+                  {% endif %}
             </div>
             <div class="card-block" style="margin-bottom: 30px">
-              <h4 class="card-title"><a href="#">{{ secondary_banner.title }}</a></h4>
+              <h4 class="card-title"><a href="{{ secondary_banner.image.url }}" data-lightbox='{"gallery": "cosmetics_images"}'>{{ secondary_banner.title }}</a></h4>
             </div>
           </div>
     {% endfor %}
@@ -96,7 +110,7 @@
                 <div class="col-12 col-sm-6 col-md-4">
                   <figure>
                     <div class="figure-img">
-                      <a href="{{ cosmetic.image.url }}" data-lightbox='{"disqus": true}'>
+                      <a href="{{ cosmetic.image.url }}" data-lightbox='{"disqus": true , "gallery": "cosmetics_images"}'>
                       <img src="{{ cosmetic.image.url }}" alt="">
                     </a>
                     </div>
@@ -126,6 +140,7 @@
         disqus: 'gameforestyakuzieu'
       });
     })(jQuery);
+
   </script>
 
      <!-- plugins js -->
