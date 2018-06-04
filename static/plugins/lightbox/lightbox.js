@@ -12,7 +12,7 @@
 	    e.preventDefault();
 
 			var option = $(this).data("lightbox"),
-					comment = '';
+					comment = '', title = '';
 
 	    if ($(this).data("animation")) {
 	      animation = $(this).data("animation");
@@ -20,8 +20,11 @@
 	      animation = 'fadeIn animate2';
 	    }
 
+	    // debugger;
 	    if ( option.disqus == true ) {
 	      comment = '<div class="lightbox-comment">' +
+			  '<div class="title_cosmetics">'+ option.title +'</div>' +
+			  '<div class="title_cosmetics">'+ option.description +'</div>' +
 	      '<div id="disqus_thread"></div>' +
 	      '<script>' +
 	        "(function() { var d = document, s = d.createElement('script'); s.src = 'https://" + light.disqus + ".disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();" +
@@ -46,16 +49,14 @@
 	    }
 
 	    var slideNum = $("[data-lightbox*='\"gallery\": \"" + option.gallery + "\"']").index(this);
-	    var lightbox = '<div class="lightbox">' +
+	    var lightbox = '<div class="lightbox custom_lightbox">' +
 	      '<div class="lightbox-overlay animated fadeIn fast"></div>' +
-				'<a class="lightbox-close animated fadeIn fast" href="#"><i class="fa fa-times"></i></a>' +
+				'<a class="lightbox-close animated fadeIn fast close_custom" href="#"><i class="fa fa-times"></i></a>' +
 	      '<div>' +
 	        '<div class="lightbox-block animated ' + animation + ' fast">' +
 	          '<div class="lightbox-img">' +
 	            '<ul></ul>' +
-	          '</div>' +
-	            comment +
-	        '</div>' +
+	          '</div>'+ comment + '</div>' +
 	      '</div>' +
 	    '</div>';
 

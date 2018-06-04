@@ -259,3 +259,6 @@
 .entry-widgets, #pingbacks, #trackbacks, #comments, #comment-form{
     display: none;
 }
+.close_custom{
+    top: 10px !important;
+}
