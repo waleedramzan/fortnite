@@ -270,3 +270,12 @@
 .close_custom{
     top: 10px !important;
 }
+.lightbox .lightbox-block .lightbox-img img{
+    max-width: 80%;
+    /*position: relative;*/
+    /*left: 15px;*/
+    z-index: -1;
+}
+.lightbox .lightbox-block .lightbox-img{
+    vertical-align: middle;
+}
