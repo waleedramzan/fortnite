@@ -10,6 +10,9 @@ RARITY_CHOICES = (
 
 class Cosmetics(models.Model):
     title = models.CharField(max_length=100)
+    type = models.CharField(max_length=20,default='abc')
+    rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='EPIC')
+    obtained = models.CharField(max_length=20,default='abc')
     decsription = models.CharField(max_length=500)
     image = models.ImageField(upload_to='cosmetics_images')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -21,7 +24,9 @@ class Cosmetics(models.Model):
 
 class CosmeticsPrimaryBanner(models.Model):
     title = models.CharField(max_length=200)
+    type = models.CharField(max_length=20,default='abc')
     rarity = models.CharField(max_length=9,choices=RARITY_CHOICES, default='grey')
+    obtained = models.CharField(max_length=20,default='abc')
     image = models.ImageField(upload_to='cosmetics_banners')
     description = models.CharField(max_length=250)
     expiry_date = models.DateTimeField()
@@ -34,7 +39,9 @@ class CosmeticsPrimaryBanner(models.Model):
 
 class CosmeticSecondaryBanner(models.Model):
     title = models.CharField(max_length=100)
+    type = models.CharField(max_length=20,default='abc')
     rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='grey')
+    obtained = models.CharField(max_length=20,default='abc')
     description = models.CharField(max_length=250)
     image = models.ImageField(upload_to='cosmetics_banners')
     expiry_date = models.DateTimeField()
