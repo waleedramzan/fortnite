@@ -24,8 +24,15 @@
 			//   '<div class="title_cosmetics">'+ option.description +'</div>'
 	    if ( option.disqus == true ) {
 	      comment = '<div class="lightbox-comment">' +
+			  '<div class = lightbox-all>'+
+			  '<div class = lightbox-title>Title:</div>'+
 			  '<div id="title_cosmetics"></div>' +
-			  '<div id="desc_cosmetics"></div>' +
+			  '<div class = lightbox-obtained>Obtained:</div>'+
+			  '<div id="obtained_cosmetics"></div>' +
+			  '<div class = lightbox-type>Type:</div>'+
+			  '<div id="type_cosmetics"></div>' +
+			  '<div class = lightbox-rarity>Rarity:</div>'+
+			  '<div id="rarity_cosmetics"></div>' + '</div>' +
 	      '<div id="disqus_thread"></div>' +
 	      '<script>' +
 			  "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
@@ -69,9 +76,9 @@
 	        '<a class="lightbox-next"><i class="fa fa-chevron-right"></i></a>'
 	      );
 	      $('body').find("[data-lightbox*='\"gallery\": \"" + option.gallery + "\"']").each(function() {
-	          $('.lightbox ul').append(
+	      	$('.lightbox ul').append(
 	          '<li>' +
-	            '<img description="'+JSON.parse($(this).attr('data-lightbox')).description+'" title="'+JSON.parse($(this).attr('data-lightbox')).title+'"  src="' + $(this).attr('href') + '">' +
+	            '<img rarity="'+JSON.parse($(this).attr('data-lightbox')).rarity+'" type="'+JSON.parse($(this).attr('data-lightbox')).type+'" obtained="'+JSON.parse($(this).attr('data-lightbox')).obtained+'"  description="'+JSON.parse($(this).attr('data-lightbox')).description+'" title="'+JSON.parse($(this).attr('data-lightbox')).title+'"  src="' + $(this).attr('href') + '">' +
 	          '</li>'
 	        );
 	      });
@@ -112,8 +119,10 @@
 	    $('.lightbox ul > li').hide();
 	    $('.lightbox ul > li:eq(' + slideNum + ')').show();
 
-	    $('#desc_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('description');
         $('#title_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('title');
+        $('#obtained_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('obtained');
+        $('#type_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('type');
+        $('#rarity_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('rarity');
 
 	    current = slideNum;
 	  });
@@ -152,8 +161,11 @@
 	        dest = 0;
 	      }
 	    }
-	    $('#desc_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + dest + ') img').attr('description');
+	    // debugger;
         $('#title_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + dest + ') img').attr('title');
+        $('#obtained_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + dest + ') img').attr('obtained');
+        $('#type_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + dest + ') img').attr('type');
+        $('#rarity_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + dest + ') img').attr('rarity');
 
 	    $('.lightbox ul > li:eq(' + current + ')').hide();
 	    $('.lightbox ul > li:eq(' + dest + ')').show();
