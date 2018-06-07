@@ -7,6 +7,44 @@
 
 {% block content %}
 
+    <section class="p-y-5">
+    <div class="owl-carousel owl-posts">
+        {% if banners %}
+          {% for banner in banners  %}
+              <div class="post-carousel">
+              <div class="text-block">
+                <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: red; position: absolute;padding: 5px; font-weight: bold; border: 1px solid red;margin: 20px; border-radius: 10px"></p>
+              </div>
+                <a href="{{ banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "description": "{{ banner.description }}" }' ><img style="width: 700px; height: 350px" src="{{ banner.image.url }}" alt=""></a>
+                  {% if banner.rarity == 'COMMON' %}
+                    <span class="badge badge-secondary">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'UNCOMMON' %}
+                    <span class="badge badge-success">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'RARE' %}
+                    <span class="badge badge-info">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'EPIC' %}
+                    <span class="badge badge-warning" style="background-color: purple">{{ banner.rarity }}</span>
+                  {% elif banner.rarity == 'LEGENDARY' %}
+                    <span class="badge badge-warning">{{ banner.rarity }}</span>
+                  {% endif %}
+                <div class="post-block">
+                  <div class="post-caption">
+                    <h2 class="post-title">
+                      <a href="{{ banner.image.url }}" data-lightbox='{"gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "description": "{{ banner.description }}" }'>{{ banner.title }}</a>
+                    </h2>
+                    <div class="post-meta">
+                      <span><i class="fa fa-clock-o"></i>{{ banner.created_at }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        {% else %}
+            <h4>No Banner Found</h4>
+        {% endif %}
+    </div>
+</section>
+
 <section class="toolbar toolbar-links">
     <div class="container">
       <h5>Media <span>({{ cosmetics|length }})</span></h5>
@@ -17,15 +55,15 @@
           <a class="dropdown-item" href="#">Platforms</a>
         </div>
       </div>
-      <ul class="toolbar-nav hidden-md-down m-r-25">
-        <li><a href="game-post.html">Articles</a></li>
-        <li><a href="reviews.html">Reviews</a></li>
-        <li class="active"><a href="gallery.html">Images</a></li>
-        <li><a href="#">Videos</a></li>
-        <li><a href="#">Streams</a></li>
-        <li><a href="#">Cheats &amp; Guides</a></li>
-        <li><a href="#">Forum</a></li>
-      </ul>
+{#      <ul class="toolbar-nav hidden-md-down m-r-25">#}
+{#        <li><a href="game-post.html">Articles</a></li>#}
+{#        <li><a href="reviews.html">Reviews</a></li>#}
+{#        <li class="active"><a href="gallery.html">Images</a></li>#}
+{#        <li><a href="#">Videos</a></li>#}
+{#        <li><a href="#">Streams</a></li>#}
+{#        <li><a href="#">Cheats &amp; Guides</a></li>#}
+{#        <li><a href="#">Forum</a></li>#}
+{#      </ul>#}
     </div>
 </section>
 
@@ -78,7 +116,7 @@
       // owl carousel
       $('.owl-posts').owlCarousel({
         margin: 5,
-        loop: true,
+        loop: false,
         dots: false,
         autoplay: true,
         responsive: {
@@ -98,7 +136,7 @@
 
       $('.owl-videos').owlCarousel({
         margin: 15,
-        loop: true,
+        loop: false,
         dots: false,
         responsive: {
           0: {
