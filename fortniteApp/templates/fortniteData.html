@@ -35,13 +35,18 @@
                     </label>
               </div>
               <div class="username-selection">
-                  <input type="text" name="username" class="form-control username-textbox-custom" placeholder="Username">
+                  <input type="text" name="username" class="form-control username-textbox-custom" placeholder="Username" required>
               </div>
               <div class="submit-btn-custom">
                   <button type="submit">Go</button>
               </div>
           </div>
       </form>
+      <div style="text-align: center">
+          {% if validation_error %}
+                    <h4 style="color: red; margin-left: 70px;">{{ validation_error }}</h4>
+          {% endif %}
+      </div>
       <div class="arrow bounce">
           <a class="fa fa-arrow-down fa-2x" id="arrow_down" href="#scroll"></a>
       </div>

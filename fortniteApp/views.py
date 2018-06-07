@@ -1,5 +1,7 @@
 import json
 
+from django.contrib import messages
+from django.forms import forms
 from django.http import HttpResponse
 from django.shortcuts import render
 import requests
@@ -26,33 +28,47 @@ class FortniteView(TemplateView):
             home_banner = HomePageBanner.objects.filter().order_by('-id')[0]
 
         if 'username' in request.GET:
-            platform = request.GET['platform']
-            username = request.GET['username']
-            headers = {
-                'authorization': 'a54432b15b52e4c14e2ac8d32994bca7',
-            }
-            url = 'https://fortniteapi.com/api/getUserID'
-            data = {
-                "username": username
-            }
 
-            response = requests.post(url,headers=headers, data=data)
-
-            # key_array = key_array.json()
-            if response.status_code == 200:
-                user = response.json()
-                user_id = user['uid']
-                next_url = 'https://fortniteapi.com/api/playerData'
-                new_data = {
-                    "user_id": user_id,
-                    "platform": platform,
-                    "window": "alltime"
+            if 'platform' in request.GET:
+                platform = request.GET['platform']
+                username = request.GET['username']
+                headers = {
+                    'authorization': 'a54432b15b52e4c14e2ac8d32994bca7',
                 }
-                new_response = requests.post(next_url, headers=headers, data=new_data)
+                url = 'https://fortniteapi.com/api/getUserID'
+                data = {
+                    "username": username
+                }
+                response = requests.post(url,headers=headers, data=data)
 
-                if new_response.status_code == 200:
-                    user_profile = new_response.json()
-                    return render(request, 'user-details.html', {'data': user_profile})
+                if response.status_code == 200:
+                    user = response.json()
+                    if 'error' in user:
+                        if user['error'] == True:
+                            entree = Entry.objects.first()
+                            validation_error = "This user does not exist or didn't play fortnite"
+                            return render(request, 'fortniteData.html',
+                                          {'user': user, 'entree': entree, 'home_banner': home_banner,
+                                           'validation_error': validation_error})
+
+                    else:
+                        user_id = user['uid']
+                        next_url = 'https://fortniteapi.com/api/playerData'
+                        new_data = {
+                            "user_id": user_id,
+                            "platform": platform,
+                            "window": "alltime"
+                        }
+                        new_response = requests.post(next_url, headers=headers, data=new_data)
+
+                        if new_response.status_code == 200:
+                            user_profile = new_response.json()
+                            return render(request, 'user-details.html', {'data': user_profile})
+            else:
+                entree = Entry.objects.first()
+                validation_error = "Please chose the platform first"
+                return render(request, 'fortniteData.html',
+                              {'user': user, 'entree': entree, 'home_banner': home_banner, 'validation_error': validation_error})
         else:
             entree = Entry.objects.first()
         return render(request, 'fortniteData.html', {'user': user, 'entree': entree, 'home_banner': home_banner})
