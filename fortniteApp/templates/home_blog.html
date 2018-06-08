@@ -1,0 +1,97 @@
+<head>
+  <title>Maain-Blog</title>
+    <meta name="fortnite blog" content="Fortnite Go Home-Blog">
+</head>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>asdnandfaskaskk</h1>
+    <section class="p-t-35 custom_blog_set">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+{#            {% for entry in entries %}#}
+                <div class="post">
+                    <h2 class="post-title"><a href="#">{{ home_blog.title }}</a></h2>
+                    <div class="post-meta">
+                      <span><i class="fa fa-clock-o"></i>Published Date: {{ home_blog.updated_at }}</span>
+{#                      <span><a href="blog-post.html#comments"><i class="fa fa-comment-o"></i> {{ home_blog.comments.count }} comments</a></span>#}
+                    </div>
+                    <div class="post-thumbnail">
+                      {% if entry.image %}
+                        <img style="width: 60%;" src="{{ home_blog.image.url }}" alt="{{ home_blog.lead }}">
+                      {% else %}
+                          <h5 style="font-style: italic;">No Image Attached in Blog</h5>
+                      {% endif %}
+                    </div>
+                <div class="blog_homepage">
+                    <p class="blog_p_set_homepage">{{ home_blog.description }}</p>
+                </div>
+              </div>
+{#            {% endfor %}#}
+
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+
+{% block js %}
+    <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'plugins/popper/popper.min.js'%}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'plugins/owl-carousel/js/owl.carousel.min.js' %}"></script>
+    <script>
+        (function($) {
+            "use strict";
+            // owl carousel
+          $('.owl-posts').owlCarousel({
+            margin: 5,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            responsive: {
+              0: {
+                items: 1
+              },
+              1024: {
+                items: 1,
+                center: false
+              },
+              1200: {
+                items: 2,
+                center: true
+              }
+            }
+          });
+
+      $('.owl-videos').owlCarousel({
+        margin: 15,
+        loop: true,
+        dots: false,
+        responsive: {
+          0: {
+            items: 1
+          },
+          700: {
+            items: 2
+          },
+          800: {
+            items: 3
+          },
+          1000: {
+            items: 4
+          },
+          1200: {
+            items: 6
+          }
+        }
+      });
+    })(jQuery);
+  </script>
+
+  <!-- theme js -->
+  <script src="{% static 'js/theme.min.js' %}"></script>
+{% endblock %}

@@ -57,20 +57,19 @@
       <div class="row">
 
           <div class="post">
-                <h2 class="post-title"><a href="{{ entree.short_url }}">{{ entree.title }}</a></h2>
+                <h2 class="post-title"><a href="{% url 'fortniteApp:homeblog' blog_id=entree.id %}">{{ entree.title }}</a></h2>
                 <div class="post-meta">
-                  <span><i class="fa fa-clock-o"></i>Published Date: {{ entree.publication_date }}</span>
-                  <span><a href="blog-post.html#comments"><i class="fa fa-comment-o"></i> {{ entree.comments.count }} comments</a></span>
+                  <span><i class="fa fa-clock-o"></i>Published Date: {{ entree.created_at }}</span>
                 </div>
                 <div class="post-thumbnail">
                   {% if entree.image %}
-                    <img style="width: 60%;" src="{{ entree.image.url }}" alt="{{ entree.lead }}">
+                    <img style="width: 60%;" src="{{ entree.image.url }}" alt="{{ entree.title }}">
                   {% else %}
                       <h5 style="font-style: italic;">No Image Attached in Blog</h5>
                   {% endif %}
                 </div>
             <div class="blog_homepage">
-                <p class="blog_p_set_homepage">{{ entree.content }}</p>
+                <p class="blog_p_set_homepage">{{ entree.description }}</p>
               </div>
           </div>
         </div>

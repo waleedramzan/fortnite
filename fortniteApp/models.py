@@ -147,3 +147,14 @@ class MapCoordinates(models.Model):
     y_coordinate = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class MainPageBlog(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='home_blogs')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title

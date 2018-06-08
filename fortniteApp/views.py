@@ -45,7 +45,7 @@ class FortniteView(TemplateView):
                     user = response.json()
                     if 'error' in user:
                         if user['error'] == True:
-                            entree = Entry.objects.first()
+                            entree = MainPageBlog.objects.filter().order_by('-id')[0]
                             validation_error = "This user does not exist or didn't play fortnite"
                             return render(request, 'fortniteData.html',
                                           {'user': user, 'entree': entree, 'home_banner': home_banner,
@@ -65,12 +65,12 @@ class FortniteView(TemplateView):
                             user_profile = new_response.json()
                             return render(request, 'user-details.html', {'data': user_profile})
             else:
-                entree = Entry.objects.first()
+                entree = MainPageBlog.objects.filter().order_by('-id')[0]
                 validation_error = "Please chose the platform first"
                 return render(request, 'fortniteData.html',
                               {'user': user, 'entree': entree, 'home_banner': home_banner, 'validation_error': validation_error})
         else:
-            entree = Entry.objects.first()
+            entree = MainPageBlog.objects.filter().order_by('-id')[0]
         return render(request, 'fortniteData.html', {'user': user, 'entree': entree, 'home_banner': home_banner})
 
 
@@ -121,6 +121,19 @@ class WeaponSpecificationsView(TemplateView):
         return render(request, self.template_name, args)
 
 
+class HomeBlogView(TemplateView):
+    template_name = 'home_blog.html'
+
+    def get_context_data(self, **kwargs):
+        pass
+
+    def get(self, request, *args, **kwargs):
+        blog_id = self.kwargs['blog_id']
+        home_blog_object = MainPageBlog.objects.filter(id=blog_id)
+        args = {'home_blog': home_blog_object}
+        return render(request, self.template_name, args)
+
+
 class MediaView(TemplateView):
     template_name = 'media_page.html'
 
@@ -156,4 +169,4 @@ def map_view(request):
         pin_info['ycoord']=foo.y_coordinate
         map_pins.append(pin_info)
     args = {'marked_locations': map_pins}
-    return render(request,template_name,args)
+    return render(request,template_name, args)
