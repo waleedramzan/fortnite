@@ -8,9 +8,20 @@ RARITY_CHOICES = (
     ('LEGENDARY','Legendary'),
 )
 
+class CosmeticCategory(models.Model):
+    category_name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.category_name
+
+
 class Cosmetics(models.Model):
+    cosmetic_category = models.ForeignKey(CosmeticCategory, on_delete=models.CASCADE,
+                                        related_name='cosmetic_category_related_name')
     title = models.CharField(max_length=100)
-    type = models.CharField(max_length=20,default='abc')
+    type = models.CharField(max_length=20,default='type')
     rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='EPIC')
     obtained = models.CharField(max_length=20,default='abc')
     decsription = models.CharField(max_length=500)
@@ -24,7 +35,7 @@ class Cosmetics(models.Model):
 
 class CosmeticsPrimaryBanner(models.Model):
     title = models.CharField(max_length=200)
-    type = models.CharField(max_length=20,default='abc')
+    type = models.CharField(max_length=20,default='type')
     rarity = models.CharField(max_length=9,choices=RARITY_CHOICES, default='grey')
     obtained = models.CharField(max_length=20,default='abc')
     image = models.ImageField(upload_to='cosmetics_banners')
