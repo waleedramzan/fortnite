@@ -1,6 +1,7 @@
 <head>
   <title>Updates</title>
-    <meta name="fortnite blog" content="Fortnite Go Blog">
+    <meta name="keywords" content="fortnite, blog, fortnitego">
+    <meta name="description" content="fortnite blog">
 </head>
 {% extends 'base.html' %}
 {% load static %}
@@ -16,7 +17,6 @@
                     <h2 class="post-title"><a href="{{ entry.short_url }}">{{ entry.title }}</a></h2>
                     <div class="post-meta">
                       <span><i class="fa fa-clock-o"></i>Published Date: {{ entry.publication_date }}</span>
-                      <span><a href="blog-post.html#comments"><i class="fa fa-comment-o"></i> {{ entry.comments.count }} comments</a></span>
                     </div>
                     <div class="post-thumbnail">
                       {% if entry.image %}

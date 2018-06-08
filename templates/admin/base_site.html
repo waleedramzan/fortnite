@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('hahaha') }}{% endblock %}
+
+{% block extrahead %}
+        <link rel="icon" href="{% static 'img/logo.png' %}" sizes="48x48" />
+    {% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Fortnite Go Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
