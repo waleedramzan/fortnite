@@ -16,7 +16,7 @@ body {
 /* LINKS */
 
 a:link, a:visited {
-    color: #447e9b;
+    color: #242629;
     text-decoration: none;
 }
 
@@ -520,7 +520,7 @@ input[type=button][disabled].default {
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: #000;
+    background: #292929;
     color: #fff;
 }
 
@@ -640,11 +640,10 @@ div.system-message p.system-message-title {
     font-size: 12px;
     padding: 5px 0 0 12px;
 }
-
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: #000;
+    background: #242629;
     padding: 10px 40px;
     border: none;
     font-size: 14px;
@@ -824,7 +823,7 @@ table#change-history tbody th {
     width: auto;
     height: 40px;
     padding: 10px 40px;
-    background: black !important;
+    background: #242629 !important;
     line-height: 40px;
     color: #fff;
     overflow: hidden;
