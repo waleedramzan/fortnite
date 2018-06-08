@@ -124,14 +124,11 @@ class WeaponSpecificationsView(TemplateView):
 class HomeBlogView(TemplateView):
     template_name = 'home_blog.html'
 
-    def get_context_data(self, **kwargs):
-        pass
-
     def get(self, request, *args, **kwargs):
         blog_id = self.kwargs['blog_id']
-        home_blog_object = MainPageBlog.objects.filter(id=blog_id)
+        home_blog_object = MainPageBlog.objects.get(id=blog_id)
         args = {'home_blog': home_blog_object}
-        return render(request, self.template_name, args)
+        return render(request, self.template_name,args)
 
 
 class MediaView(TemplateView):

@@ -57,7 +57,7 @@
       <div class="row">
 
           <div class="post">
-                <h2 class="post-title"><a href="{% url 'fortniteApp:homeblog' blog_id=entree.id %}">{{ entree.title }}</a></h2>
+                <h2 class="post-title"><a href="{% url 'fortniteApp:home_blog' blog_id=entree.id %}">{{ entree.title }}</a></h2>
                 <div class="post-meta">
                   <span><i class="fa fa-clock-o"></i>Published Date: {{ entree.created_at }}</span>
                 </div>
@@ -68,9 +68,9 @@
                       <h5 style="font-style: italic;">No Image Attached in Blog</h5>
                   {% endif %}
                 </div>
-            <div class="blog_homepage">
-                <p class="blog_p_set_homepage">{{ entree.description }}</p>
-              </div>
+{#            <div class="blog_homepage">#}
+{#                <p class="blog_p_set_homepage">{{ entree.description }}</p>#}
+{#              </div>#}
           </div>
         </div>
       </div>

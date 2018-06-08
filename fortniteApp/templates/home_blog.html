@@ -6,7 +6,6 @@
 {% load static %}
 
 {% block content %}
-    <h1>asdnandfaskaskk</h1>
     <section class="p-t-35 custom_blog_set">
     <div class="container">
       <div class="row">
@@ -19,8 +18,8 @@
 {#                      <span><a href="blog-post.html#comments"><i class="fa fa-comment-o"></i> {{ home_blog.comments.count }} comments</a></span>#}
                     </div>
                     <div class="post-thumbnail">
-                      {% if entry.image %}
-                        <img style="width: 60%;" src="{{ home_blog.image.url }}" alt="{{ home_blog.lead }}">
+                      {% if home_blog.image %}
+                        <img style="width: 60%;" src="{{ home_blog.image.url }}">
                       {% else %}
                           <h5 style="font-style: italic;">No Image Attached in Blog</h5>
                       {% endif %}
