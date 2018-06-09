@@ -237,16 +237,17 @@
         padding: 10px;
     }
 }
-/*@media (max-width: 411px){*/
-        /*.main-home-custom-css .console-selection{*/
-            /*float: none;*/
-        /*}*/
-/*}*/
+
+.custom_entry_content{
+
+}
 .entry-title{
 
 }
+
 .blog_detail_custom{
     padding: 5em;
+    text-align: center !important;
 }
 .blog_detail_custom img{
     max-width: 60%;
@@ -256,6 +257,8 @@
 }
 .entry-content p{
     width: 60%;
+    margin: 0 auto;
+    padding-top: 30px;
 }
 .entry-widgets, #pingbacks, #trackbacks, #comments, #comment-form{
     display: none;
