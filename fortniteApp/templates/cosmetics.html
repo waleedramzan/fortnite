@@ -129,54 +129,12 @@
                     </div>
                   </figure>
                 </div>
-{#                  <div class="col-12 col-sm-6 col-md-4">#}
-{#                  <div class="card card-lg">#}
-{#                    <div class="card-img" style="border-left: 1px solid #E3E0E0; border-top: 1px solid #E3E0E0; border-right: 1px solid #E3E0E0;">#}
-{#                      <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=foo.id %}">#}
-{#                      <img src="{{ foo.image.url }}" class="card-img-top" style="width:450px;height:225px;">#}
-{#                    </a>#}
-{#                    </div>#}
-{#                    <div class="card-block">#}
-{#                      <h4 class="card-title">#}
-{#                        <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=foo.id %}">{{ wc.title }}</a>#}
-{#                      </h4>#}
-{#                      <div class="card-meta">#}
-{#                        <span>June 13, 2017</span>#}
-{#                      </div>#}
-{#                      <p class="card-text">{{ foo.decsription }}</p>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
               {% endfor %}
           </div>
         </div>
      {% endfor %}
      {% endif %}
   </div>
-
-
-{#<section>#}
-{#    <div class="container">#}
-{##}
-{#      <div class="row row-3 figure-effect">#}
-{#      {% if cosmetics %}#}
-{#          {% for cosmetic in cosmetics  %}#}
-{#                <div class="col-12 col-sm-6 col-md-4">#}
-{#                  <figure>#}
-{#                    <div class="figure-img">#}
-{#                      <a href="{{ cosmetic.image.url }}" data-lightbox='{ "gallery": "cosmetics_images", "disqus": true, "title": "{{ cosmetic.title }}", "obtained": "{{ cosmetic.obtained }}", "type": "{{ cosmetic.type }}", "rarity": "{{ cosmetic.rarity }}" }'>#}
-{#                        <img src="{{ cosmetic.image.url }}" alt="">#}
-{#                    </a>#}
-{#                    </div>#}
-{#                  </figure>#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#          {% else %}#}
-{#                <h4>Currently No Item found</h4>#}
-{#      {% endif %}#}
-{#      </div>#}
-{#    </div>#}
-{#</section>#}
 {% endblock %}
 {% block js %}
     <!-- vendor js -->

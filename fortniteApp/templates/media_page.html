@@ -16,7 +16,7 @@
               <div class="text-block">
                 <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: red; position: absolute;padding: 5px; font-weight: bold; border: 1px solid red;margin: 20px; border-radius: 10px"></p>
               </div>
-                <a href="{{ banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "description": "{{ banner.description }}" }' ><img style="width: 700px; height: 350px" src="{{ banner.image.url }}" alt=""></a>
+                <a href="{{ banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "obtained": "{{ banner.obtained }}", "type": "{{ banner.type }}", "rarity": "{{ banner.rarity }}" }' ><img style="width: 700px; height: 350px" src="{{ banner.image.url }}" alt=""></a>
                   {% if banner.rarity == 'COMMON' %}
                     <span class="badge badge-secondary">{{ banner.rarity }}</span>
                   {% elif banner.rarity == 'UNCOMMON' %}
@@ -31,7 +31,7 @@
                 <div class="post-block">
                   <div class="post-caption">
                     <h2 class="post-title">
-                      <a href="{{ banner.image.url }}" data-lightbox='{"gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "description": "{{ banner.description }}" }'>{{ banner.title }}</a>
+                      <a href="{{ banner.image.url }}" data-lightbox='{"gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "obtained": "{{ banner.obtained }}", "type": "{{ banner.type }}", "rarity": "{{ banner.rarity }}" }'>{{ banner.title }}</a>
                     </h2>
                     <div class="post-meta">
                       <span><i class="fa fa-clock-o"></i>{{ banner.created_at }}</span>
@@ -56,15 +56,6 @@
           <a class="dropdown-item" href="#">Platforms</a>
         </div>
       </div>
-{#      <ul class="toolbar-nav hidden-md-down m-r-25">#}
-{#        <li><a href="game-post.html">Articles</a></li>#}
-{#        <li><a href="reviews.html">Reviews</a></li>#}
-{#        <li class="active"><a href="gallery.html">Images</a></li>#}
-{#        <li><a href="#">Videos</a></li>#}
-{#        <li><a href="#">Streams</a></li>#}
-{#        <li><a href="#">Cheats &amp; Guides</a></li>#}
-{#        <li><a href="#">Forum</a></li>#}
-{#      </ul>#}
     </div>
 </section>
 
@@ -72,13 +63,13 @@
     <div class="container">
 
       <div class="row row-3 figure-effect">
-      {% if cosmetics %}
-          {% for cosmetic in cosmetics  %}
+      {% if medias %}
+          {% for media in medias  %}
                 <div class="col-12 col-sm-6 col-md-4">
                   <figure>
                     <div class="figure-img">
-                      <a href="{{ cosmetic.image.url }}" data-lightbox='{"disqus": true}'>
-                      <img src="{{ cosmetic.image.url }}" alt="">
+                      <a href="{{ media.image.url }}" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}"}'>
+                      <img src="{{ media.image.url }}" alt="">
                     </a>
                     </div>
                   </figure>
@@ -107,6 +98,49 @@
         disqus: 'gameforestyakuzieu'
       });
     })(jQuery);
+
+     {% if banners %}
+            {% for banner in banners %}
+                myFunction("{{ banner.expiry_date|escapejs }}","banner{{ banner.id }}");
+            {% endfor %}
+        {% endif %}
+
+
+  function myFunction(date,id) {
+            var countDownDate = new Date(date).getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            {#document.getElementsByClassName(id).innerHTML = days + "d " + hours + "h "#}
+            {#+ minutes + "m " + seconds + "s ";#}
+             $("body").find('.' + id).html(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementsByClassName(id).innerHTML = "EXPIRED";
+            }
+        }, 200);
+    return true;
+}
+
+
+
+
   </script>
 
      <!-- plugins js -->

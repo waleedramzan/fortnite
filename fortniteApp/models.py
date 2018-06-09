@@ -158,3 +158,18 @@ class MainPageBlog(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class MediaPageBanner(models.Model):
+    title = models.CharField(max_length=200)
+    type = models.CharField(max_length=20,default='type')
+    rarity = models.CharField(max_length=9,choices=RARITY_CHOICES, default='grey')
+    obtained = models.CharField(max_length=20,default='abc')
+    image = models.ImageField(upload_to='media_banners')
+    description = models.CharField(max_length=250)
+    expiry_date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
