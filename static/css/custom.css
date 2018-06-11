@@ -83,8 +83,6 @@
 }
 .crowsal-form-custom {
     text-align: center;
-    position: relative;
-    top: -22em;
     z-index: 1;
 }
 .fortnite-logo-custom{
@@ -125,7 +123,7 @@
 }
 @media (max-width: 450px){
     .username-textbox-custom{
-        width: 10em;
+        width: 9em;
     }
 }
 .main-home-inverse-section-custom{

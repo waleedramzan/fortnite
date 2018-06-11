@@ -8,49 +8,49 @@
         <div class="carousel-overlay"></div>
         <div class="carousel-caption">
           <div>
+              <div class="main-home-page-style crowsal-form-custom">
+                  <h3 style="color: white">Fortnite Stats</h3>
+                  <form method="get">
+
+                      <div class="main-home-custom-css">
+                          <div class="console-selection">
+
+                            <label class="layersMenu consoles-style">
+                                <input type="radio" name="platform" value="xb1" />
+                                <i class="fab fa-xbox newclass"></i>
+                            </label>
+
+                              <label class="layersMenu consoles-style">
+                                <input type="radio" name="platform" value="ps4" />
+                                <i class="fab fa-playstation newclass"></i>
+                            </label>
+
+                            <label class="layersMenu consoles-style">
+                                <input type="radio" name="platform" value="pc" />
+                                <i class="fab fa-windows newclass"></i>
+                            </label>
+                          </div>
+                          <div class="username-selection">
+                              <input type="text" name="username" class="form-control username-textbox-custom" placeholder="Username" required>
+                          </div>
+                          <div class="submit-btn-custom">
+                              <button type="submit">Go</button>
+                          </div>
+                      </div>
+                  </form>
+                  <div style="text-align: center">
+                      {% if validation_error %}
+                                <h4 style="color: red; margin-left: 70px;">{{ validation_error }}</h4>
+                      {% endif %}
+                  </div>
+                  <div class="arrow bounce">
+                      <a class="fa fa-arrow-down fa-2x" id="arrow_down" href="#scroll"></a>
+                  </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
-  <div class="main-home-page-style crowsal-form-custom">
-      <h3 style="color: white">Fortnite Stats</h3>
-      <form method="get">
-
-          <div class="main-home-custom-css">
-              <div class="console-selection">
-
-                    <label class="layersMenu consoles-style">
-                        <input type="radio" name="platform" value="xb1" />
-                        <i class="fab fa-xbox newclass"></i>
-                    </label>
-
-                      <label class="layersMenu consoles-style">
-                        <input type="radio" name="platform" value="ps4" />
-                        <i class="fab fa-playstation newclass"></i>
-                    </label>
-
-                    <label class="layersMenu consoles-style">
-                        <input type="radio" name="platform" value="pc" />
-                        <i class="fab fa-windows newclass"></i>
-                    </label>
-              </div>
-              <div class="username-selection">
-                  <input type="text" name="username" class="form-control username-textbox-custom" placeholder="Username" required>
-              </div>
-              <div class="submit-btn-custom">
-                  <button type="submit">Go</button>
-              </div>
-          </div>
-      </form>
-      <div style="text-align: center">
-          {% if validation_error %}
-                    <h4 style="color: red; margin-left: 70px;">{{ validation_error }}</h4>
-          {% endif %}
-      </div>
-      <div class="arrow bounce">
-          <a class="fa fa-arrow-down fa-2x" id="arrow_down" href="#scroll"></a>
-      </div>
-  </div>
   </section>
     <section class="p-t-35 custom_blog_set" id="scroll">
     <div class="container">
