@@ -167,7 +167,7 @@
     text-align: center;
     margin: 0 auto;
     display: flex;
-    width: 70%;
+    width: 80%;
 }
 #map{
     width: 1200px;
@@ -312,4 +312,28 @@
 .blog_homepage{}
 .custom-settings{
     padding-left: 112px;
+}
+#map_filters {
+    float: right;
+    /*z-index: 9999;*/
+    display: inline-table;
+    background: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    position: relative;
+    top: 5em;
+    right: 10em;
+    padding: 8px;
+}
+/*.admin_map_filter{*/
+
+/*}*/
+#map_filters label{
+    font-size: 12px;
+    text-align: left;
+}
+#map_filters input{
+    float: left;
+    margin-top: 3px;
+    margin-right: 8px;
 }

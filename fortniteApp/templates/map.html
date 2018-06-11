@@ -12,9 +12,9 @@
 
         {% if request.user.is_superuser %}
 
-            <div>
+            <div id="map_filters" class="leaflet-control">
              <form method="get">
-                <input type="radio" name="chests" value="loot" />
+                <input type="radio" name="chests" value="loot" checked/>
                 <label for="male">Loot Chests</label>
 
                 <input type="radio" name="chests" value="shopping"/>
@@ -29,11 +29,15 @@
         </div>
 
         {% else %}
-            <div>
-            <input type="checkbox" name="loots" value="1">Loot Chests<br>
-            <input type="checkbox" name="shopping" value="2">Shopping Carts<br>
-            <input type="checkbox" name="ammo" value="3">Ammo<br>
-            <input type="checkbox" name="machines" value="4">Vending Machines<br>
+            <div  id="map_filters" class="leaflet-control">
+            <input type="checkbox" name="loots" value="1" id="loot_id" checked>
+                <label>Loot Chests</label>
+            <input type="checkbox" name="shopping" value="2" id="shopping_id">
+                <label>Shopping Carts</label>
+            <input type="checkbox" name="ammo" value="3" id="ammo_id">
+                <label>Ammo</label>
+            <input type="checkbox" name="machines" value="4" id="machines_id">
+                <label>Vending Machines</label>
             </div>
 
         {% endif %}

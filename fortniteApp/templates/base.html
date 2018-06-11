@@ -194,6 +194,11 @@
         <script src="{% static 'plugins/leaflet/leaflet.js' %}"></script>
 
         <script>
+
+            var shopping_filter = $("input[name=shopping]:checked").val();
+            var machines_filter = $("input[name=machines]:checked").val();
+            var ammo_filter = $("input[name=ammo]:checked").val();
+
         $(function(){
             var map = L.map('map', {
                 crs: L.CRS.Simple,
@@ -204,22 +209,22 @@
                 zoom: 1
             });
             var loots = L.icon({
-                iconUrl: '{% static 'img/map/banner3.jpeg' %}',
+                iconUrl: '{% static 'img/map/chest.png' %}',
                 iconSize:     [30, 30], // size of the icon
                 iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
             });
             var machines = L.icon({
-                iconUrl: '{% static 'img/map/guns_banner.jpeg' %}',
+                iconUrl: '{% static 'img/map/vending.png' %}',
                 iconSize:     [30, 30], // size of the icon
                 iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
             });
             var ammo = L.icon({
-                iconUrl: '{% static 'img/map/images.jpeg' %}',
+                iconUrl: '{% static 'img/map/ammo.png' %}',
                 iconSize:     [30, 30], // size of the icon
                 iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
             });
             var shopping = L.icon({
-                iconUrl: '{% static 'img/map/images_2.jpeg' %}',
+                iconUrl: '{% static 'img/map/cart.png' %}',
                 iconSize:     [30, 30], // size of the icon
                 iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
             });
@@ -231,6 +236,16 @@
             var bounds = [[0,0], [1200,1200]];
             var image = L.imageOverlay('{% static 'img/map/S4Map.png' %}', bounds).addTo(map);
             map.fitBounds(bounds);
+            {##}
+
+        var clockTorontoElement = L.DomUtil.get("map_filters"),
+        zones = [
+          {
+            element: clockTorontoElement, // Using the HTML Element for now.
+            width: parseInt(window.getComputedStyle(clockTorontoElement, null).getPropertyValue("width"), 10),
+            //area: L.latLngBounds([100, 200], [300, 400]) // Using L.latLngBounds for now.
+          },
+        ];
             {% if request.user.is_superuser %}
                 map.on('click', function(e){
                     var radioValue = $("input[name=chests]:checked").val();
@@ -244,8 +259,6 @@
                             L.marker([e.latlng.lat, e.latlng.lng], {icon: shopping}).addTo(map);
                         else if (radioValue == 'loot')
                             L.marker([e.latlng.lat, e.latlng.lng], {icon: loots}).addTo(map);
-                    } else {
-                        L.marker([e.latlng.lat, e.latlng.lng], {icon: default_pin}).addTo(map);
                     }
                     var URL = "{% url 'fortniteApp:map' %}";
                     var newMarker = new L.marker(e.latlng).addTo(map);
@@ -258,31 +271,180 @@
                 });
             {% endif %}
 
-            var markers = [];
+            {% if request.user.is_superuser %}
+                var markers = [];
+                {% for pin in marked_locations %}
+                    if (markers.length < 1) id = 0;
+                    else id = markers[markers.length - 1]._id + 1;
+                    var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+                    var icon_code = {{ pin.icon_code }}
+                    if (icon_code == 4)
+                        myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: ammo});
+                    else if (icon_code == 2)
+                        myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: machines});
+                    else if (icon_code == 3)
+                        myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: shopping});
+                    else if (icon_code == 1)
+                        myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
+                    else
+                        myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: default_pin});
 
-            {% for pin in marked_locations %}
-                if (markers.length < 1) id = 0;
-                else id = markers[markers.length - 1]._id + 1;
-                var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
-                var icon_code = {{ pin.icon_code }}
-                if (icon_code == 4)
-                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: ammo});
-                else if (icon_code == 2)
-                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: machines});
-                else if (icon_code == 3)
-                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: shopping});
-                else if (icon_code == 1)
-                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
-                else
-                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: default_pin});
+                    myMarker._id = {{ pin.id }};
+                    var myPopup = myMarker.bindPopup(popupContent, {
+                        closeButton: false
+                    });
+                    map.addLayer(myMarker);
+                    markers.push(myMarker);
+                {% endfor %}
 
-                myMarker._id = {{ pin.id }};
-                var myPopup = myMarker.bindPopup(popupContent, {
-                    closeButton: false
-                });
-                map.addLayer(myMarker);
-                markers.push(myMarker);
-            {% endfor %}
+                {% else %}
+
+                var markers_loot = [], popupContent, myPopup;
+                // For first time checked show
+                var loots_filter = $("input[name=loots]:checked").val();
+                if (loots_filter !=undefined){
+                     {% for pin in marked_locations %}
+                            {% if pin.icon_code == 1%}
+                                if (markers_loot.length < 1) id = 0;
+                                else id = markers_loot[markers_loot.length - 1]._id + 1;
+                                popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+
+                                myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
+
+                                myMarker._id = {{ pin.id }};
+                                myPopup = myMarker.bindPopup(popupContent, {
+                                    closeButton: false
+                                });
+                                map.addLayer(myMarker);
+                                markers_loot.push(myMarker);
+
+                            {% endif %}
+                        {% endfor %}
+                }
+                $('#loot_id').click(function () {
+                    if($(this).prop("checked") == true){
+                        {% for pin in marked_locations %}
+                            {% if pin.icon_code == 1%}
+                                if (markers_loot.length < 1) id = 0;
+                                else id = markers_loot[markers_loot.length - 1]._id + 1;
+                                popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+
+                                myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
+
+                                myMarker._id = {{ pin.id }};
+                                myPopup = myMarker.bindPopup(popupContent, {
+                                    closeButton: false
+                                });
+                                map.addLayer(myMarker);
+                                markers_loot.push(myMarker);
+
+                            {% endif %}
+                        {% endfor %}
+                    } else if($(this).prop("checked") == false) {
+                        {% for pin in marked_locations %}
+                            {% if pin.icon_code == 1%}
+                                markers_loot.forEach(function(marker) {
+                                    map.removeLayer(marker);
+                            });
+                            {% endif %}
+                        {% endfor %}
+                    }
+               });
+                var markers_shopping = [], popupContent, myPopup;
+               $('#shopping_id').click(function () {
+                    var loots_filter = $("input[name=shopping]:checked").val();
+                    if($(this).prop("checked") == true){
+                    {% for pin in marked_locations %}
+                        {% if pin.icon_code == 2%}
+                            if (markers_shopping.length < 1) id = 0;
+                            else id = markers_shopping[markers_shopping.length - 1]._id + 1;
+                            var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+
+                            myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: shopping});
+
+                            myMarker._id = {{ pin.id }};
+                            var myPopup = myMarker.bindPopup(popupContent, {
+                                closeButton: false
+                            });
+                            map.addLayer(myMarker);
+                            markers_shopping.push(myMarker);
+                        {% endif %}
+
+                    {% endfor %}
+                    } else if($(this).prop("checked") == false) {
+                        {% for pin in marked_locations %}
+                            {% if pin.icon_code == 2%}
+                                markers_shopping.forEach(function(marker) {
+                                    map.removeLayer(marker);
+                            });
+                            {% endif %}
+                        {% endfor %}
+                    }
+               });
+               var markers_ammo = [], popupContent, myPopup;
+               $('#ammo_id').click(function () {
+                    var loots_filter = $("input[name=ammo]:checked").val();
+                    if($(this).prop("checked") == true){
+                    {% for pin in marked_locations %}
+                        {% if pin.icon_code == 3%}
+                            if (markers_ammo.length < 1) id = 0;
+                            else id = markers_ammo[markers_ammo.length - 1]._id + 1;
+                            var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+
+                            myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: ammo});
+
+                            myMarker._id = {{ pin.id }};
+                            var myPopup = myMarker.bindPopup(popupContent, {
+                                closeButton: false
+                            });
+                            map.addLayer(myMarker);
+                            markers_ammo.push(myMarker);
+                        {% endif %}
+
+                    {% endfor %}
+                    } else if($(this).prop("checked") == false) {
+                        {% for pin in marked_locations %}
+                            {% if pin.icon_code == 3%}
+                                markers_ammo.forEach(function(marker) {
+                                    map.removeLayer(marker);
+                            });
+                            {% endif %}
+                        {% endfor %}
+                    }
+               });
+               var markers_machines = [], popupContent, myPopup;
+               $('#machines_id').click(function () {
+                    var loots_filter = $("input[name=machines]:checked").val();
+                    if($(this).prop("checked") == true){
+                    {% for pin in marked_locations %}
+                        {% if pin.icon_code == 4%}
+                            if (markers_machines.length < 1) id = 0;
+                            else id = markers_machines[markers_machines.length - 1]._id + 1;
+                            var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+
+                            myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: machines});
+
+                            myMarker._id = {{ pin.id }};
+                            var myPopup = myMarker.bindPopup(popupContent, {
+                                closeButton: false
+                            });
+                            map.addLayer(myMarker);
+                            markers_machines.push(myMarker);
+                        {% endif %}
+
+                    {% endfor %}
+                    } else if($(this).prop("checked") == false) {
+                        {% for pin in marked_locations %}
+                            {% if pin.icon_code == 4%}
+                                markers_machines.forEach(function(marker) {
+                                    map.removeLayer(marker);
+                            });
+                            {% endif %}
+                        {% endfor %}
+                    }
+               });
+
+            {% endif %}
 
         //Deletion of marked point
             {% if request.user.is_superuser %}
@@ -303,20 +465,6 @@
                 });
             {% endif %}
         });
-        // Filters
-{#        {% if request.user.is_superuser %}#}
-{##}
-{#        {% else %}#}
-{#            var URL = "{% url 'fortniteApp:map' %}";#}
-{#            var loots = $("input[name=Loots]:checked").val();#}
-{##}
-{#            $.post(URL, data, function(response){#}
-{#                                    if(response === 'success'){#}
-{#                                        console.log('Yay!');#}
-{#                                    }#}
-{#                                });#}
-{#        {% endif %}#}
-
 
 
         </script>

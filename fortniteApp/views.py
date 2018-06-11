@@ -144,8 +144,9 @@ class MediaView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         media_results = Media.objects.all()
-        media_banner = MediaPageBanner.objects.filter(
-            expiry_date__gt=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        # media_banner = MediaPageBanner.objects.filter(
+        #     expiry_date__gt=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        media_banner = MediaPageBanner.objects.filter()
 
         args = {'medias': media_results, 'banners': media_banner}
 
