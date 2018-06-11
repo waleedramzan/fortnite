@@ -48,7 +48,7 @@
 
 <section class="toolbar toolbar-links">
     <div class="container">
-      <h5>Media <span>({{ cosmetics|length }})</span></h5>
+      <h5>Media <span>({{ medias|length }})</span></h5>
       <div class="dropdown float-right">
         <div class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item active" href="#">Recent</a>
@@ -65,15 +65,27 @@
       <div class="row row-3 figure-effect">
       {% if medias %}
           {% for media in medias  %}
-                <div class="col-12 col-sm-6 col-md-4">
-                  <figure>
-                    <div class="figure-img">
-                      <a href="{{ media.image.url }}" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}"}'>
-                      <img src="{{ media.image.url }}" alt="">
-                    </a>
+                {% if media.image %}
+                    <div class="col-12 col-sm-6 col-md-4">
+                      <figure>
+                        <div class="figure-img">
+                          <a href="{{ media.image.url }}" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}", "image": "true"}'>
+                          <img src="{{ media.image.url }}" alt="">
+                        </a>
+                        </div>
+                      </figure>
                     </div>
-                  </figure>
-                </div>
+                  {% elif media.video %}
+                    <div class="col-12 col-sm-6 col-md-4">
+                      <figure>
+                        <div class="figure-img">
+                            <video width="400" controls>
+                              <source src="{{ media.video.url }}" type="video/mp4" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}", "video": "true"}'>
+                            </video>
+                        </div>
+                      </figure>
+                    </div>
+                  {% endif %}
             {% endfor %}
           {% else %}
                 <h4>Currently No Item found</h4>

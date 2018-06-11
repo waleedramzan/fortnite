@@ -137,7 +137,8 @@ class Media(models.Model):
     type = models.CharField(max_length=20, default='type')
     rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='EPIC')
     obtained = models.CharField(max_length=20, default='obtained')
-    image = models.ImageField(upload_to='media_images')
+    image = models.ImageField(upload_to='media_images', null=True, blank=True)
+    video = models.FileField(upload_to='media_videos', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

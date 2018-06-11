@@ -313,3 +313,8 @@
 .custom-settings{
     padding-left: 112px;
 }
+@media (max-width: 1600px) {
+    .lightbox .lightbox-block .lightbox-video {
+        max-width: 800px;
+    }
+}
