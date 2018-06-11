@@ -15,7 +15,7 @@
               <div class="text-block">
                 <p class="banner{{ banner.id }}  top-left" style="font-size:20px; color: #b30000; position: absolute;padding: 5px; font-weight: bold; border: 1px solid #b30000;margin: 20px; border-radius: 10px"></p>
               </div>
-                <a href="{{ banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "obtained": "{{ banner.obtained }}", "type": "{{ banner.type }}", "rarity": "{{ banner.rarity }}", "image": "true" }' ><img style="width: 700px; height: 350px" src="{{ banner.image.url }}" alt=""></a>
+                <a href="{{ banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners", "disqus": true, "title": "{{ banner.title }}", "obtained": "{{ banner.obtained }}", "type": "{{ banner.type }}", "rarity": "{{ banner.rarity }}", "image": "true" }' ><img style="width: 600px; height: 300px" src="{{ banner.image.url }}" alt=""></a>
                   {% if banner.rarity == 'COMMON' %}
                     <span class="badge badge-secondary">{{ banner.rarity }}</span>
                   {% elif banner.rarity == 'UNCOMMON' %}
@@ -55,7 +55,7 @@
                 <p class="sec_banner{{ secondary_banner.id }}" style="font-size:10px; color: #b30000; position: absolute;padding-left: 3px; padding-right: 3px; margin: 12px; font-weight: bold; border: 1px solid #b30000; border-radius: 7px"></p>
               </div>
               <a href="{{ secondary_banner.image.url }}" data-lightbox='{ "gallery": "cosmetics_banners", "disqus": true, "title": "{{ secondary_banner.title }}", "obtained": "{{ secondary_banner.obtained }}", "type": "{{ secondary_banner.type }}", "rarity": "{{ secondary_banner.rarity }}", "image": "true" }'>
-              <img src="{{ secondary_banner.image.url }}" style="height: 125px; width: 200px">
+              <img src="{{ secondary_banner.image.url }}" style="height: 100px; width: 175px">
             </a>
                 {% if secondary_banner.rarity == 'COMMON' %}
                     <span class="badge badge-secondary secondary-banner-rarity">{{ secondary_banner.rarity }}</span>
