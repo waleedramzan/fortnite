@@ -1,4 +1,4 @@
-<head>
+<head xmlns="http://www.w3.org/1999/html">
   <title>Map</title>
     <meta name="keywords" content="fortnite, map, fortnitego">
     <meta name="description" content="fortnite map">
@@ -9,5 +9,33 @@
 {% block content %}
     <div class="map-main">
         <div id="map"></div>
+
+        {% if request.user.is_superuser %}
+
+            <div>
+             <form method="get">
+                <input type="radio" name="chests" value="loot" />
+                <label for="male">Loot Chests</label>
+
+                <input type="radio" name="chests" value="shopping"/>
+                  <label for="male">Shopping Carts</label>
+
+                <input type="radio" name="chests" value="ammo"/>
+                <label for="male"> Ammo Crates</label>
+
+                <input type="radio" name="chests" value="machines" />
+                <label for="male"> Vending Machines</label>
+             </form>
+        </div>
+
+        {% else %}
+            <div>
+            <input type="checkbox" name="loots" value="1">Loot Chests<br>
+            <input type="checkbox" name="shopping" value="2">Shopping Carts<br>
+            <input type="checkbox" name="ammo" value="3">Ammo<br>
+            <input type="checkbox" name="machines" value="4">Vending Machines<br>
+            </div>
+
+        {% endif %}
     </div>
 {% endblock %}

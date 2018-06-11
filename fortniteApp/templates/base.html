@@ -200,16 +200,56 @@
                 minZoom: 0,
                 maxZoom: 4,
                 center: [0, 0],
+                pin: false,
                 zoom: 1
+            });
+            var loots = L.icon({
+                iconUrl: '{% static 'img/map/banner3.jpeg' %}',
+                iconSize:     [30, 30], // size of the icon
+                iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+            });
+            var machines = L.icon({
+                iconUrl: '{% static 'img/map/guns_banner.jpeg' %}',
+                iconSize:     [30, 30], // size of the icon
+                iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+            });
+            var ammo = L.icon({
+                iconUrl: '{% static 'img/map/images.jpeg' %}',
+                iconSize:     [30, 30], // size of the icon
+                iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+            });
+            var shopping = L.icon({
+                iconUrl: '{% static 'img/map/images_2.jpeg' %}',
+                iconSize:     [30, 30], // size of the icon
+                iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
+            });
+            var default_pin = L.icon({
+                iconUrl: '{% static 'img/map/defaultpin.png' %}',
+                iconSize:     [30, 30], // size of the icon
+                iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
             });
             var bounds = [[0,0], [1200,1200]];
             var image = L.imageOverlay('{% static 'img/map/S4Map.png' %}', bounds).addTo(map);
             map.fitBounds(bounds);
             {% if request.user.is_superuser %}
                 map.on('click', function(e){
+                    var radioValue = $("input[name=chests]:checked").val();
+                    if (radioValue != undefined)
+                    {
+                        if (radioValue == 'ammo')
+                            L.marker([e.latlng.lat, e.latlng.lng], {icon: ammo}).addTo(map);
+                        else if (radioValue == 'machines')
+                            L.marker([e.latlng.lat, e.latlng.lng], {icon: machines}).addTo(map);
+                        else if (radioValue == 'shopping')
+                            L.marker([e.latlng.lat, e.latlng.lng], {icon: shopping}).addTo(map);
+                        else if (radioValue == 'loot')
+                            L.marker([e.latlng.lat, e.latlng.lng], {icon: loots}).addTo(map);
+                    } else {
+                        L.marker([e.latlng.lat, e.latlng.lng], {icon: default_pin}).addTo(map);
+                    }
                     var URL = "{% url 'fortniteApp:map' %}";
                     var newMarker = new L.marker(e.latlng).addTo(map);
-                    var data = {'x_cord': newMarker._latlng.lng, 'y_cord': newMarker._latlng.lat};
+                    var data = {'x_cord': newMarker._latlng.lng, 'y_cord': newMarker._latlng.lat, 'icon_name': radioValue};
                     $.post(URL, data, function(response){
                         if(response === 'success'){
                             console.log('Yay!');
@@ -224,7 +264,18 @@
                 if (markers.length < 1) id = 0;
                 else id = markers[markers.length - 1]._id + 1;
                 var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
-                myMarker = L.marker([{{ pin.ycoord }},{{ pin.xcoord }}]);
+                var icon_code = {{ pin.icon_code }}
+                if (icon_code == 4)
+                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: ammo});
+                else if (icon_code == 2)
+                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: machines});
+                else if (icon_code == 3)
+                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: shopping});
+                else if (icon_code == 1)
+                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
+                else
+                    myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: default_pin});
+
                 myMarker._id = {{ pin.id }};
                 var myPopup = myMarker.bindPopup(popupContent, {
                     closeButton: false
@@ -232,6 +283,8 @@
                 map.addLayer(myMarker);
                 markers.push(myMarker);
             {% endfor %}
+
+        //Deletion of marked point
             {% if request.user.is_superuser %}
                 $(document).on("click","#pin-custom-id",function() {
                     var current_pin_id = parseInt($(this).val());
@@ -250,6 +303,22 @@
                 });
             {% endif %}
         });
+        // Filters
+{#        {% if request.user.is_superuser %}#}
+{##}
+{#        {% else %}#}
+{#            var URL = "{% url 'fortniteApp:map' %}";#}
+{#            var loots = $("input[name=Loots]:checked").val();#}
+{##}
+{#            $.post(URL, data, function(response){#}
+{#                                    if(response === 'success'){#}
+{#                                        console.log('Yay!');#}
+{#                                    }#}
+{#                                });#}
+{#        {% endif %}#}
+
+
+
         </script>
     {% endblock %}
 </body>

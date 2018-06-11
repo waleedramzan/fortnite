@@ -16,6 +16,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 from fortniteApp.models import *
 
+ICON_MAP = {
+    "pin": 0,
+    "loot": 1,
+    "machines": 2,
+    "shopping": 3,
+    "ammo": 4
+    }
+
 
 class FortniteView(TemplateView):
     template_name = 'fortniteData.html'
@@ -154,6 +162,9 @@ def map_view(request):
             map_coordinates = MapCoordinates()
             map_coordinates.x_coordinate = request.POST['x_cord']
             map_coordinates.y_coordinate = request.POST['y_cord']
+            if 'icon_name' in request.POST:
+                map_coordinates.icon_code = ICON_MAP.get(request.POST['icon_name'])
+
             map_coordinates.save()
 
     all_marked_locations = MapCoordinates.objects.filter()
@@ -164,6 +175,7 @@ def map_view(request):
         pin_info['title']='map pin ' + str(foo.id)
         pin_info['xcoord']=foo.x_coordinate
         pin_info['ycoord']=foo.y_coordinate
+        pin_info['icon_code'] = foo.icon_code
         map_pins.append(pin_info)
     args = {'marked_locations': map_pins}
     return render(request,template_name, args)

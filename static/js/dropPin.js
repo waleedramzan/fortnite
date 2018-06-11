@@ -52,7 +52,7 @@
 				imgC.css('top', yval+'px');
 				imgC.css('left', xval+'px');
 				imgC.css('z-index', i);
-				
+
 				imgC.attr('src',  options.pin);
 
 				imgC.appendTo(thisObj);

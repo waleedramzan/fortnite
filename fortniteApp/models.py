@@ -150,6 +150,7 @@ class MapCoordinates(models.Model):
     y_coordinate = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    icon_code = models.IntegerField(default=0)
 
 
 class MainPageBlog(models.Model):
