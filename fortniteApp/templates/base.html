@@ -202,11 +202,11 @@
         $(function(){
             var map = L.map('map', {
                 crs: L.CRS.Simple,
-                minZoom: 0,
+                minZoom: -1,
                 maxZoom: 4,
                 center: [0, 0],
                 pin: false,
-                zoom: 1
+                zoom: 0
             });
             var loots = L.icon({
                 iconUrl: '{% static 'img/map/chest.png' %}',
@@ -249,19 +249,20 @@
             {% if request.user.is_superuser %}
                 map.on('click', function(e){
                     var radioValue = $("input[name=chests]:checked").val();
+                    var newMarker;
                     if (radioValue != undefined)
                     {
                         if (radioValue == 'ammo')
-                            L.marker([e.latlng.lat, e.latlng.lng], {icon: ammo}).addTo(map);
+                            newMarker = L.marker([e.latlng.lat, e.latlng.lng], {icon: ammo}).addTo(map);
                         else if (radioValue == 'machines')
-                            L.marker([e.latlng.lat, e.latlng.lng], {icon: machines}).addTo(map);
+                            newMarker = L.marker([e.latlng.lat, e.latlng.lng], {icon: machines}).addTo(map);
                         else if (radioValue == 'shopping')
-                            L.marker([e.latlng.lat, e.latlng.lng], {icon: shopping}).addTo(map);
+                            newMarker = L.marker([e.latlng.lat, e.latlng.lng], {icon: shopping}).addTo(map);
                         else if (radioValue == 'loot')
-                            L.marker([e.latlng.lat, e.latlng.lng], {icon: loots}).addTo(map);
+                            newMarker = L.marker([e.latlng.lat, e.latlng.lng], {icon: loots}).addTo(map);
                     }
                     var URL = "{% url 'fortniteApp:map' %}";
-                    var newMarker = new L.marker(e.latlng).addTo(map);
+                    //var newMarker = new L.marker(e.latlng).addTo(map);
                     var data = {'x_cord': newMarker._latlng.lng, 'y_cord': newMarker._latlng.lat, 'icon_name': radioValue};
                     $.post(URL, data, function(response){
                         if(response === 'success'){

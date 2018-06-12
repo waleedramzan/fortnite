@@ -183,6 +183,7 @@
     height: 600px;
     margin-top: 50px;
     margin-bottom: 50px;
+    background: #292929;
 }
 .map-class{}
 
@@ -351,6 +352,7 @@
     top: 5em;
     right: 10em;
     padding: 8px;
+    padding-right: 30px;
 }
 /*.admin_map_filter{*/
 
