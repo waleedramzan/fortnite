@@ -178,5 +178,6 @@ def map_view(request):
         pin_info['ycoord']=foo.y_coordinate
         pin_info['icon_code'] = foo.icon_code
         map_pins.append(pin_info)
-    args = {'marked_locations': map_pins}
+    map_image = MapImage.objects.filter().order_by('-id')[0]
+    args = {'marked_locations': map_pins, 'map_image': map_image}
     return render(request,template_name, args)

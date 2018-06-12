@@ -234,9 +234,8 @@
                 iconAnchor:   [30, 30], // point of the icon which will correspond to marker's location
             });
             var bounds = [[0,0], [1200,1200]];
-            var image = L.imageOverlay('{% static 'img/map/S4Map.png' %}', bounds).addTo(map);
+            var image = L.imageOverlay('{{ map_image.image.url }}', bounds).addTo(map);
             map.fitBounds(bounds);
-            {##}
 
         var clockTorontoElement = L.DomUtil.get("map_filters"),
         zones = [
