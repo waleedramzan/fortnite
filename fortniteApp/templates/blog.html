@@ -14,9 +14,11 @@
 
             {% for entry in entries %}
                 <div class="post">
-                    <h2 class="post-title"><a href="{{ entry.short_url }}">{{ entry.title }}</a></h2>
-                    <div class="post-meta">
-                      <span><i class="fa fa-clock-o"></i>Published Date: {{ entry.publication_date }}</span>
+                    <div class="custom_blog_set_finale">
+                        <h2 class="post-title"><a href="{{ entry.short_url }}">{{ entry.title }}</a></h2>
+                        <div class="post-meta">
+                          <span><i class="fa fa-clock-o"></i>Published Date: {{ entry.publication_date }}</span>
+                        </div>
                     </div>
                     <div class="post-thumbnail">
                       {% if entry.image %}

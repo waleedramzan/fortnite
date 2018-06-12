@@ -57,10 +57,12 @@
       <div class="row">
 
           <div class="post">
+            <div class="custom_blog_set_finale">
                 <h2 class="post-title"><a href="{% url 'fortniteApp:home_blog' blog_id=entree.id %}">{{ entree.title }}</a></h2>
                 <div class="post-meta">
                   <span><i class="fa fa-clock-o"></i>Published Date: {{ entree.created_at }}</span>
                 </div>
+            </div>
                 <div class="post-thumbnail">
                   {% if entree.image %}
                     <img style="width: 60%;" src="{{ entree.image.url }}" alt="{{ entree.title }}">

@@ -3,7 +3,7 @@
 <div class="blog_detail_custom">
     <article id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %}" itemscope itemtype="http://schema.org/Article">
       {% block entry-header %}
-      <header class="entry-header">
+      <header class="entry-header custom_detail_zinnia">
         {% block entry-title %}
         <h2 class="entry-title" itemprop="name">
           <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark" itemprop="url">

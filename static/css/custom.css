@@ -293,6 +293,7 @@
     width: 60%;
     margin: 0 auto;
     padding-top: 30px;
+    text-align: left;
 }
 .entry-widgets, #pingbacks, #trackbacks, #comments, #comment-form{
     display: none;
@@ -334,14 +335,15 @@
     margin-bottom: 20px;
 }
 .main-home-inverse-section-custom{
-    height: 600px;
+    height: 650px;
 }
 .custom_blog_set{
     text-align: center;
 }
 .blog_p_set_homepage {
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
+    text-align: left;
 }
 .blog_homepage{}
 .custom-settings{
@@ -376,4 +378,19 @@
     .lightbox .lightbox-block .lightbox-video {
         max-width: 800px;
     }
+}
+.post{
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 0px;
+}
+.custom_blog_set_finale {
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+}
+.custom_detail_zinnia{
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
 }
