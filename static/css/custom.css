@@ -248,6 +248,12 @@
     .custom-table-style ul li{
         padding: 15px !important;
     }
+    .map-main{
+        display: block;
+    }
+    #map{
+        width: 400px;
+    }
 }
 @media (max-width: 992px){
     .custom-table-style {
