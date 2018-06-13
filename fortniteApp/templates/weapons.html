@@ -26,7 +26,7 @@
           <ul class="toolbar-nav hidden-md-down m-r-25 nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">All</a></li>
                 {% for category in weapon_categories %}
-                    <li><a data-toggle="tab" href="#{{ category.category_name }}">{{ category.category_name }}</a></li>
+                    <li><a data-toggle="tab" href="#{{ category.category_name|cut:" " }}">{{ category.category_name }}</a></li>
                 {% endfor %}
           </ul>
     </section>
@@ -62,7 +62,7 @@
     </div>
   {% if weapon_categories %}
       {% for wc in weapon_categories %}
-        <div id="{{ wc.category_name }}" class="tab-pane fade">
+        <div id="{{ wc.category_name|cut:" "}}" class="tab-pane fade">
           <h3>{{ wc.category_name }}</h3>
           <div class="row">
             {% for foo in wc.weapons_category_related_name.all %}
