@@ -277,6 +277,7 @@
                     if (markers.length < 1) id = 0;
                     else id = markers[markers.length - 1]._id + 1;
                     var popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
+
                     var icon_code = {{ pin.icon_code }}
                     if (icon_code == 4)
                         myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: ammo});
@@ -308,13 +309,15 @@
                                 if (markers_loot.length < 1) id = 0;
                                 else id = markers_loot[markers_loot.length - 1]._id + 1;
                                 popupContent = '<button value="{{ pin.id }}" id="pin-custom-id")">Remove Marker</button>';
-
                                 myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
 
                                 myMarker._id = {{ pin.id }};
-                                myPopup = myMarker.bindPopup(popupContent, {
-                                    closeButton: false
-                                });
+                                {% if request.user.is_superuser %}
+                                    myPopup = myMarker.bindPopup(popupContent, {
+                                        closeButton: false
+                                    });
+                                {% endif %}
+
                                 map.addLayer(myMarker);
                                 markers_loot.push(myMarker);
 
@@ -332,9 +335,11 @@
                                 myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: loots});
 
                                 myMarker._id = {{ pin.id }};
-                                myPopup = myMarker.bindPopup(popupContent, {
-                                    closeButton: false
-                                });
+                                {% if request.user.is_superuser %}
+                                    myPopup = myMarker.bindPopup(popupContent, {
+                                        closeButton: false
+                                    });
+                                {% endif %}
                                 map.addLayer(myMarker);
                                 markers_loot.push(myMarker);
 
@@ -363,9 +368,12 @@
                             myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: shopping});
 
                             myMarker._id = {{ pin.id }};
-                            var myPopup = myMarker.bindPopup(popupContent, {
-                                closeButton: false
-                            });
+
+                            {% if request.user.is_superuser %}
+                                    myPopup = myMarker.bindPopup(popupContent, {
+                                        closeButton: false
+                                    });
+                                {% endif %}
                             map.addLayer(myMarker);
                             markers_shopping.push(myMarker);
                         {% endif %}
@@ -394,9 +402,11 @@
                             myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: ammo});
 
                             myMarker._id = {{ pin.id }};
-                            var myPopup = myMarker.bindPopup(popupContent, {
-                                closeButton: false
-                            });
+                            {% if request.user.is_superuser %}
+                                myPopup = myMarker.bindPopup(popupContent, {
+                                    closeButton: false
+                                });
+                            {% endif %}
                             map.addLayer(myMarker);
                             markers_ammo.push(myMarker);
                         {% endif %}
@@ -425,9 +435,11 @@
                             myMarker = L.marker([{{ pin.ycoord }}, {{ pin.xcoord }}], {icon: machines});
 
                             myMarker._id = {{ pin.id }};
-                            var myPopup = myMarker.bindPopup(popupContent, {
-                                closeButton: false
-                            });
+                            {% if request.user.is_superuser %}
+                                myPopup = myMarker.bindPopup(popupContent, {
+                                    closeButton: false
+                                });
+                            {% endif %}
                             map.addLayer(myMarker);
                             markers_machines.push(myMarker);
                         {% endif %}

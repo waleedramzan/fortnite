@@ -17,7 +17,7 @@
     </div>
   </section>
 
-  <section class="p-t-30">
+  <section class="p-t-30 custom_padding_first-p-t-30-specs-weapons">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -27,27 +27,27 @@
                         <tr>
                             <th> </th>
                             <th>
-                                <div class="badge badge-secondary">
+                                <div class="badge badge-secondary badge-custom">
                                     Common
                                 </div>
                                 </th>
                             <th>
-                                <div class="badge badge-success">
+                                <div class="badge badge-success badge-custom">
                                     Un Common
                                 </div>
                             </th>
                             <th>
-                                <div class="badge badge-info">
+                                <div class="badge badge-info badge-custom">
                                     Rare
                                 </div>
                             </th>
                             <th>
-                                <div class="badge badge-warning" style="background-color: purple">
+                                <div class="badge badge-warning badge-custom" style="background-color: purple">
                                     Epic
                                 </div>
                             </th>
                             <th>
-                                <div class="badge badge-warning">
+                                <div class="badge badge-warning badge-custom">
                                     Legendary
                                 </div>
                             </th>
@@ -114,39 +114,71 @@
         </div>
         <div class="col-lg-4">
           <!-- sidebar -->
-          <div class="sidebar">
+          <div class="sidebar weapon_specs_custom_sidebar_set">
             <!-- widget game -->
             <div class="widget widget-game">
               <div class="widget-block" style="background-image: url({{ weapon.image.url }})">
                 <div class="overlay"></div>
-                <div class="widget-item">
+                <div class="widget-item custom_widget_item">
                   <h4>{{ weapon.title }}</h4>
                   <span class="meta">Released:{{ weapon.release_date }}</span>
 
                   <h5>Rarities</h5>
+                <div class="rarity_custom_ul">
+                    <ul class="">
                     {% if weapon_details|length == 1 %}
-                        <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        <li>
+                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        </li>
                     {% elif weapon_details|length == 2 %}
-                        <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        <li>
+                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        </li>
                     {% elif weapon_details|length == 3 %}
-                        <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-success">Un Common</span></a>
-                        <a href="#"><span class="badge badge-info">Rare</span></a>
+                        <li>
+                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-info">Rare</span></a>
+                        </li>
                     {% elif weapon_details|length == 4 %}
-                        <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-success">Un Common</span></a>
-                        <a href="#"><span class="badge badge-info">Rare</span></a>
-                        <a href="#"><span class="badge badge-warning"style="margin-top: 10px; background-color: purple">Epic</span></a>
-
+                        <li>
+                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-info">Rare</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-warning"style="margin-top: 10px; background-color: purple">Epic</span></a>
+                        </li>
                     {% elif weapon_details|length == 5 %}
-                        <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        <a href="#"><span class="badge badge-success">Un Common</span></a>
-                        <a href="#"><span class="badge badge-info">Rare</span></a>
-                        <a href="#"><span class="badge badge-warning" style="margin-top: 10px; background-color: purple">Epic</span></a>
-                        <a href="#"><span class="badge badge-warning">Legendary</span></a>
-
+                        <li>
+                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-success">Un Common</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-info">Rare</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-warning" style="margin-top: 10px; background-color: purple">Epic</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="badge badge-warning">Legendary</span></a>
+                        </li>
                     {% endif %}
+                </ul>
+                </div>
                   <h5>Bulletes Used</h5>
                   <p style="margin: 0px !important;">{{ weapon.bullets_used }}</p>
 
@@ -161,7 +193,7 @@
     </div>
   </section>
 
-  <section class="p-t-30">
+  <section class="p-t-30 weapon_specs_custom_set">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">

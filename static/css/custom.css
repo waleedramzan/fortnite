@@ -254,6 +254,24 @@
     #map{
         width: 400px;
     }
+    .custom-specs-styling tbody tr td {
+        font-size: 10px;
+        text-align: center;
+        padding: 8px 4px;
+    }
+    .badge-custom {
+        font-size: 8px;
+        padding: 6px;
+    }
+    .custom_widget_item a{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .rarity_custom_ul ul{}
+    .rarity_custom_ul ul li{
+        margin-top: 10px;
+    }
+
 }
 @media (max-width: 992px){
     .custom-table-style {
@@ -280,17 +298,20 @@
 }
 
 .blog_detail_custom{
-    padding: 5em;
+    /*padding: 5em;*/
     text-align: center !important;
 }
 .blog_detail_custom img{
-    max-width: 60%;
+    /*max-width: 25%;*/
+}
+.post .post-title, .post .post-meta{
+    text-align: left;
 }
 .entry-content{
 
 }
 .entry-content p{
-    width: 60%;
+    /*width: 60%;*/
     margin: 0 auto;
     padding-top: 30px;
     text-align: left;
@@ -341,7 +362,7 @@
     text-align: center;
 }
 .blog_p_set_homepage {
-    width: 60%;
+    /*width: 40%;*/
     margin: 0 auto;
     text-align: left;
 }
@@ -380,17 +401,49 @@
     }
 }
 .post{
-    width: 80%;
-    margin: 0 auto;
-    border-bottom: 0px;
+    /*width: 80%;*/
+    /*margin: 0 auto;*/
+    /*border-bottom: 0px;*/
 }
 .custom_blog_set_finale {
-    width: 60%;
+    /*width: 40%;*/
     margin: 0 auto;
     text-align: left;
 }
 .custom_detail_zinnia{
-    width: 60%;
+    max-width: 60%;
     margin: 0 auto;
     text-align: left;
+}
+.weapon_specs_custom_set{
+    padding-top: 0px !important;
+}
+.weapon_specs_custom_sidebar_set{
+    height: auto !important;
+}
+.custom_padding_first-p-t-30-specs-weapons{
+    padding-bottom: 0px;
+}
+.blog_comment_custom_set{}
+.customeee{
+    margin: 0 auto;
+}
+.weapons_size_custom_set{
+   max-width: 70% !important;
+    /*width:450px;*/
+    /*height:225px;*/
+}
+.card-main-div-set{
+    text-align: center!important;
+}
+.cosmetic_main_banner_settings{
+    max-width: 55%!important;
+    margin: 0 auto;
+}
+.post-carousal-custom-settings{
+    height: 330px;
+    /*text-align: center;*/
+}
+.sec_banner_custom_set{
+    /*max-width: 70%;*/
 }

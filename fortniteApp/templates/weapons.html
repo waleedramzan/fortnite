@@ -40,9 +40,9 @@
                   {%  for weapon in weapons %}
                       <div class="col-12 col-sm-6 col-md-4">
                           <div class="card card-lg">
-                            <div class="card-img" style="border-left: 1px solid #E3E0E0; border-top: 1px solid #E3E0E0; border-right: 1px solid #E3E0E0;">
+                            <div class="card-img card-main-div-set" style="border-left: 1px solid #E3E0E0; border-top: 1px solid #E3E0E0; border-right: 1px solid #E3E0E0;">
                               <a href="{% url 'fortniteApp:weapon_specifications' weapon_id=weapon.id %}">
-                              <img src="{{ weapon.image.url }}" class="card-img-top" style="width:450px;height:225px;">
+                              <img src="{{ weapon.image.url }}" class="card-img-top weapons_size_custom_set" style="">
                             </a>
                             </div>
                             <div class="card-block">
