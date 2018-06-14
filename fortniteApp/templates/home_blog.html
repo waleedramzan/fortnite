@@ -9,17 +9,16 @@
     <section class="p-t-35 custom_blog_set">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
-{#            {% for entry in entries %}#}
-                <div class="post">
+          <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+                <div class="post post-single">
                     <h2 class="post-title"><a href="#">{{ home_blog.title }}</a></h2>
                     <div class="post-meta">
                       <span><i class="fa fa-clock-o"></i>Published Date: {{ home_blog.updated_at }}</span>
-{#                      <span><a href="blog-post.html#comments"><i class="fa fa-comment-o"></i> {{ home_blog.comments.count }} comments</a></span>#}
                     </div>
                     <div class="post-thumbnail">
                       {% if home_blog.image %}
-                        <img style="width: 60%;" src="{{ home_blog.image.url }}">
+                        <img style="" src="{{ home_blog.image.url }}">
                       {% else %}
                           <h5 style="font-style: italic;">No Image Attached in Blog</h5>
                       {% endif %}
@@ -28,7 +27,6 @@
                     <p class="blog_p_set_homepage">{{ home_blog.description }}</p>
                 </div>
               </div>
-{#            {% endfor %}#}
 
         </div>
       </div>

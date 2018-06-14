@@ -52,30 +52,33 @@
       </div>
     </div>
   </section>
-    <section class="p-t-35 custom_blog_set" id="scroll">
+    <section class="p-t-35 custom_blog_set">
     <div class="container">
       <div class="row">
+        <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
 
-          <div class="post">
-            <div class="custom_blog_set_finale">
-                <h2 class="post-title"><a href="{% url 'fortniteApp:home_blog' blog_id=entree.id %}">{{ entree.title }}</a></h2>
-                <div class="post-meta">
-                  <span><i class="fa fa-clock-o"></i>Published Date: {{ entree.created_at }}</span>
+                <div class="post">
+                    <div class="custom_blog_set_finale">
+                        <h2 class="post-title"><a href="{% url 'fortniteApp:home_blog' blog_id=entree.id %}">{{ entree.title }}</a></h2>
+                        <div class="post-meta">
+                          <span><i class="fa fa-clock-o"></i>Published Date: {{ entree.created_at }}</span>
+                        </div>
+                    </div>
+                    <div class="post-thumbnail">
+                      {% if entree.image %}
+                        <img style="" src="{{ entree.image.url }}" alt="{{ entree.title }}">
+                      {% else %}
+                          <h5 style="font-style: italic;">No Image Attached in Blog</h5>
+                      {% endif %}
+                    </div>
+                <div class="blog_homepage">
+                    <p class="blog_p_set_homepage">{{ entree.description }}</p>
                 </div>
-            </div>
-                <div class="post-thumbnail">
-                  {% if entree.image %}
-                    <img style="width: 60%;" src="{{ entree.image.url }}" alt="{{ entree.title }}">
-                  {% else %}
-                      <h5 style="font-style: italic;">No Image Attached in Blog</h5>
-                  {% endif %}
-                </div>
-{#            <div class="blog_homepage">#}
-{#                <p class="blog_p_set_homepage">{{ entree.description }}</p>#}
-{#              </div>#}
-          </div>
+              </div>
+
         </div>
       </div>
+    </div>
   </section>
 
   {% endblock %}
