@@ -144,8 +144,10 @@
     font-size: 30px;
 }
 .arrow {
-  text-align: center;
-  margin: 8% 0;
+    text-align: center;
+    /*margin: 8% 0;*/
+    position: relative;
+    top: 12em;
 }
 .bounce {
   -moz-animation: bounce 2s infinite;
