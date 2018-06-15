@@ -237,6 +237,13 @@
     padding: 0 0;
 }
 @media (max-width: 510px){
+    .cosmetic_main_banner_settings{
+        max-width: 70% !important;
+    }
+    .sec_banner_custom_set{
+        max-width: 55% !important;
+        margin: 0 auto;
+    }
     .custom-table-style {
         margin-left: 3em !important;
         margin-right: 3em !important;
@@ -254,7 +261,7 @@
         display: block;
     }
     #map{
-        width: 400px;
+        width: 300px;
     }
     .custom-specs-styling tbody tr td {
         font-size: 10px;
@@ -296,7 +303,11 @@
         max-width: 300px !important;
         margin: 0 auto !important;
     }
-
+    #map_filters {
+        top: -43em !important;
+        left: 0em !important;
+        right: 0em !important;
+    }
 }
 .media_image_settings{
     width: 100%;

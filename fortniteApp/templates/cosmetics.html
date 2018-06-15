@@ -122,9 +122,9 @@
             {% for foo in cc.cosmetic_category_related_name.all %}
                 <div class="col-12 col-sm-6 col-md-4">
                   <figure>
-                    <div class="figure-img">
+                    <div class="figure-img card-main-div-set">
                       <a href="{{ foo.image.url }}" data-lightbox='{ "gallery": "cosmetics_images", "disqus": true, "title": "{{ cosmetic.title }}", "obtained": "{{ cosmetic.obtained }}", "type": "{{ cosmetic.type }}", "rarity": "{{ cosmetic.rarity }}", "image": "true" }'>
-                        <img src="{{ foo.image.url }}" alt="" style="width:  350px; height: 200px">
+                        <img src="{{ foo.image.url }}" alt="" class="card-img-top weapons_size_custom_set">
                     </a>
                     </div>
                   </figure>
