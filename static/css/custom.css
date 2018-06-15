@@ -273,6 +273,25 @@
     .rarity_custom_ul ul li{
         margin-top: 10px;
     }
+    .custom-settings{
+        padding-left: 20px !important;
+    }
+    .disqus_comments_lightbox_media{
+        display: none;
+    }
+    .lightbox-title, .lightbox-obtained, .lightbox-type, .lightbox-rarity{
+        font-size: 10px !important;
+        margin-right: 10px !important;
+    }
+    .lightbox .lightbox-block .lightbox-comment {
+        padding: 10px 45px;
+    }
+    .lightbox .lightbox-block{
+        display: grid !important;
+    }
+    #title_cosmetics, #type_cosmetics, #type_cosmetics, #rarity_cosmetics, #obtained_cosmetics{
+        font-size: 12px;
+    }
 
 }
 @media (max-width: 992px){

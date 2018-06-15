@@ -37,7 +37,7 @@
                     '<div id="type_cosmetics"></div>' +
                     '<div class = lightbox-rarity>Rarity:</div>' +
                     '<div id="rarity_cosmetics"></div>' + '</div>' +
-                    '<div id="disqus_thread"></div>' +
+                    '<div id="disqus_thread" class="disqus_comments_lightbox_media"></div>' +
                     '<script>' +
                     "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
                     '</script>' +
@@ -50,7 +50,7 @@
                     '<div class = lightbox-all>' +
                     '<div class = lightbox-title>Title:</div>' +
                     '<div id="title_cosmetics"></div>' +
-                    '<div id="disqus_thread"></div>' +
+                    '<div id="disqus_thread" class="disqus_comments_lightbox_media"></div>' +
                     '<script>' +
                     "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
                     '</script>' +
