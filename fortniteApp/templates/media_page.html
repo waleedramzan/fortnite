@@ -37,7 +37,7 @@
                       <figure>
                         <div class="figure-img">
                           <a href="{{ media.image.url }}" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}", "image": "true"}'>
-                          <img src="{{ media.image.url }}" alt="" style="width:  350px; height: 200px">
+                          <img src="{{ media.image.url }}" alt="" class="media_image_settings">
                         </a>
                         </div>
                       </figure>
@@ -46,8 +46,8 @@
                     <div class="col-12 col-sm-6 col-md-4">
                       <figure>
                         <div class="figure-img">
-                            <a href="{{ media.video.url }}" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}"}'>
-                                <video width="400" height="200px" controls muted>
+                            <a href="{{ media.video.url }}" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}", "video": "true"}'>
+                                <video class="video_media_set" controls muted>
                                   <source src="{{ media.video.url }}" type="video/mp4" data-lightbox='{"disqus": true, "gallery": "media_images", "title": "{{ media.title }}", "obtained": "{{ media.obtained }}", "type": "{{ media.type }}", "rarity": "{{ media.rarity }}", "video": "true"}'>
                                 </video>
                             </a>

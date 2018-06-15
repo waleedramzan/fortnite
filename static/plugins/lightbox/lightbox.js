@@ -103,19 +103,28 @@
                 );
             }
             else if(JSON.parse($(this).attr('data-lightbox')).video == "true"){
-	      		$('.lightbox ul').append(
-	      			'<li class="lightbox-video">' +
-					  '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-					  '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title +'">'+
-						'<iframe class="embed-responsive-item" src="' + $(this).attr('src') + '" allowfullscreen></iframe>' +
-					  '</div>' +
-					'</li>'
-	      			// '<li>' +
-                    // '<video width="400" controls>' +
-					// '<source rarity="' + JSON.parse($(this).attr('data-lightbox')).rarity + '" type="' + JSON.parse($(this).attr('data-lightbox')).type + '" obtained="' + JSON.parse($(this).attr('data-lightbox')).obtained + '"  description="' + JSON.parse($(this).attr('data-lightbox')).description + '" title="' + JSON.parse($(this).attr('data-lightbox')).title + '"  src="' + $(this).attr('src') + '">' +
-                    // '</video>'+
-					// '</li>'
-                );
+				if($(this).attr('src')) {
+					// debugger;
+                    $('.lightbox ul').append(
+                        '<li class="lightbox-video">' +
+                        '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                        '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                        '<iframe class="embed-responsive-item" src="' + $(this).attr('src') + '" allowfullscreen></iframe>' +
+                        '</div>' +
+                        '</li>'
+                    );
+                }
+                else if($(this).attr('href')){
+					// debugger;
+					$('.lightbox ul').append(
+                        '<li class="lightbox-video">' +
+                        '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                        '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                        '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
+                        '</div>' +
+                        '</li>'
+                    );
+				}
 			}
 	      });
 	    }

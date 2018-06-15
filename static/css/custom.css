@@ -292,7 +292,17 @@
     #title_cosmetics, #type_cosmetics, #type_cosmetics, #rarity_cosmetics, #obtained_cosmetics{
         font-size: 12px;
     }
+    .lightbox-video{
+        max-width: 300px !important;
+        margin: 0 auto !important;
+    }
 
+}
+.media_image_settings{
+    width: 100%;
+}
+.video_media_set{
+    width: 100%;
 }
 @media (max-width: 992px){
     .custom-table-style {
