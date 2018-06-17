@@ -126,57 +126,87 @@
                   <h5>Rarities</h5>
                 <div class="rarity_custom_ul">
                     <ul class="">
-                    {% if weapon_details|length == 1 %}
+
                         <li>
-                            <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        </li>
-                    {% elif weapon_details|length == 2 %}
-                        <li>
-                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                            <a href="#"><span class="badge badge-secondary" id="1">Common</span></a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge badge-success">Un Common</span></a>
-                        </li>
-                    {% elif weapon_details|length == 3 %}
-                        <li>
-                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                            <a href="#"><span class="badge badge-success"id="2">Un Common</span></a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge badge-success">Un Common</span></a>
+                            <a href="#"><span class="badge badge-info" id="3">Rare</span></a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge badge-info">Rare</span></a>
-                        </li>
-                    {% elif weapon_details|length == 4 %}
-                        <li>
-                            <a href="#"><span class="badge badge-secondary">Common</span></a>
+                            <a href="#"><span class="badge badge-warning" style="margin-top: 10px; background-color: purple" id="4">Epic</span></a>
                         </li>
                         <li>
-                            <a href="#"><span class="badge badge-success">Un Common</span></a>
+                            <a href="#"><span class="badge badge-warning" id="5">Legendary</span></a>
                         </li>
-                        <li>
-                            <a href="#"><span class="badge badge-info">Rare</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-warning"style="margin-top: 10px; background-color: purple">Epic</span></a>
-                        </li>
-                    {% elif weapon_details|length == 5 %}
-                        <li>
-                            <a href="#"><span class="badge badge-secondary">Common</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-success">Un Common</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-info">Rare</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-warning" style="margin-top: 10px; background-color: purple">Epic</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-warning">Legendary</span></a>
-                        </li>
-                    {% endif %}
+
+{#                    {% if new_object %}#}
+{#                        {% for something in new_object %}#}
+{##}
+{#                            {% if something.weapon_rarity_type == 1%}#}
+{##}
+{#                            {% endif %}#}
+{##}
+{##}
+{#                        {% endfor %}#}
+{##}
+{#                    {% endif %}#}
+
+
+{#                    {% if weapon_details|length == 1 %}#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-secondary">Common</span></a>#}
+{#                        </li>#}
+{#                    {% elif weapon_details|length == 2 %}#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-secondary">Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-success">Un Common</span></a>#}
+{#                        </li>#}
+{#                    {% elif weapon_details|length == 3 %}#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-secondary">Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-success">Un Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-info">Rare</span></a>#}
+{#                        </li>#}
+{#                    {% elif weapon_details|length == 4 %}#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-secondary">Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-success">Un Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-info">Rare</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-warning"style="margin-top: 10px; background-color: purple">Epic</span></a>#}
+{#                        </li>#}
+{#                    {% elif weapon_details|length == 5 %}#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-secondary" id="1">Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-success"id="2">Un Common</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-info" id="3">Rare</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-warning" style="margin-top: 10px; background-color: purple" id="4">Epic</span></a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#"><span class="badge badge-warning" id="5">Legendary</span></a>#}
+{#                        </li>#}
+{#                    {% endif %}#}
                 </ul>
                 </div>
                   <h5>Bulletes Used</h5>
@@ -198,6 +228,7 @@
       <div class="row">
         <div class="col-lg-8">
         <div id="disqus_thread"></div>
+        <script src="{% static 'plugins/jquery/jquery-3.2.1.min.js'%}"></script>
             <script>
                 (function() { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
@@ -206,6 +237,47 @@
                 (d.head || d.body).appendChild(s);
                 })();
             </script>
+            <script>
+                {% if new_object %}
+                    {% for something in new_object %}
+                        {% if something.weapon_rarity_type == 1 %}
+
+                            $('#1').hide();
+
+                        {% elif something.weapon_rarity_type == 2 %}
+
+                            $('#2').hide();
+
+                        {% elif something.weapon_rarity_type == 3 %}
+
+                            $('#3').hide();
+
+                        {% elif something.weapon_rarity_type == 4 %}
+
+                            $('#4').hide();
+
+                         {% elif something.weapon_rarity_type == 5 %}
+
+                            $('#5').hide();
+
+                        {% else %}
+                            $('#1').hide();
+                            $('#2').hide();
+                            $('#3').hide();
+                            $('#4').hide();
+                            $('#5').hide();
+
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                        $('#1').show();
+                        $('#2').show();
+                        $('#3').show();
+                        $('#4').show();
+                        $('#5').show();
+                {% endif %}
+            </script>
+
         </div>
       </div>
     </div>

@@ -23,8 +23,8 @@ class Cosmetics(models.Model):
     title = models.CharField(max_length=100)
     type = models.CharField(max_length=20,default='type')
     rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='EPIC')
-    obtained = models.CharField(max_length=20,default='obtained')
-    decsription = models.CharField(max_length=500)
+    obtained = models.CharField(max_length=5000,default='obtained')
+    # decsription = models.CharField(max_length=500)
     image = models.ImageField(upload_to='cosmetics_images')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -135,8 +135,6 @@ class Media(models.Model):
     title = models.CharField(max_length=100)
     decsription = models.CharField(max_length=500)
     type = models.CharField(max_length=20, default='type')
-    # rarity = models.CharField(max_length=9, choices=RARITY_CHOICES, default='EPIC')
-    # obtained = models.CharField(max_length=20, default='obtained')
     image = models.ImageField(upload_to='media_images', null=True, blank=True)
     video = models.FileField(upload_to='media_videos', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -167,12 +165,8 @@ class MainPageBlog(models.Model):
 
 class MediaPageBanner(models.Model):
     title = models.CharField(max_length=200)
-    # type = models.CharField(max_length=20,default='type')
-    # rarity = models.CharField(max_length=9,choices=RARITY_CHOICES, default='grey')
-    # obtained = models.CharField(max_length=20,default='abc')
     image = models.ImageField(upload_to='media_banners')
     description = models.CharField(max_length=250)
-    # expiry_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
