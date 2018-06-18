@@ -258,10 +258,11 @@
         padding: 15px !important;
     }
     .map-main{
-        display: block;
+        display: flow-root;
     }
     #map{
         width: 300px;
+        margin-bottom: 0px;
     }
     .custom-specs-styling tbody tr td {
         font-size: 10px;
