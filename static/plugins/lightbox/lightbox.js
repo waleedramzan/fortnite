@@ -101,8 +101,7 @@
                       );
                   }
                   else if (JSON.parse($(this).attr('data-lightbox')).video == "true") {
-                      if ($(this).attr('src')) {
-                          // debugger;
+                  	if ($(this).attr('src')) {
                           $('.lightbox ul').append(
                               '<li class="lightbox-video">' +
                               '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
@@ -115,20 +114,19 @@
                               '</li>'
                           );
                       }
-                      // else if ($(this).attr('href')) {
-                      //     debugger;
-                      //     $('.lightbox ul').append(
-                      //         '<li class="lightbox-video">' +
-                      //         '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                      //         '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                      //         // '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
-                      //         '<video class="video_media_set lightbox_media_video" controls>' +
-                      //         '<source src="' + $(this).attr('href') + '" type="video/mp4"' +
-                      //         '</video>' +
-                      //         '</div>' +
-                      //         '</li>'
-                      //     );
-                      // }
+                      else if ($(this).attr('href')) {
+                          $('.lightbox ul').append(
+                              '<li class="lightbox-video">' +
+                              '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                              '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                              // '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
+                              '<video class="video_media_set lightbox_media_video" controls>' +
+                              '<source src="' + $(this).attr('href') + '" type="video/mp4"' +
+                              '</video>' +
+                              '</div>' +
+                              '</li>'
+                          );
+                      }
                   }
               });
           }
@@ -161,12 +159,12 @@
               $('#rarity_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('rarity');
           }
           current = slideNum;
-          if($(this).find('img').length){
-          	console.log('image');
-		  }
-		  else{
-          	$('.lightbox_media_video').get(slideNum-1).play();
-		  }
+          // if($(this).find('img').length){
+          	// console.log('image');
+		  // }
+		  // else{
+          	// $('.lightbox_media_video').get(slideNum-1).play();
+		  // }
       });
 
 	  $('body').on('click', '.lightbox-overlay, .lightbox-close', function() {
