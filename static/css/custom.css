@@ -258,7 +258,7 @@
         padding: 15px !important;
     }
     .map-main{
-        display: flow-root;
+        display: grid;
     }
     #map{
         width: 300px;
@@ -305,8 +305,8 @@
         margin: 0 auto !important;
     }
     #map_filters {
-        top: -43em !important;
-        left: 0em !important;
+        top: -40em !important;
+        left: 10em !important;
         right: 0em !important;
     }
 }
