@@ -23,8 +23,6 @@
               animation = 'fadeIn animate2';
           }
 
-          //  '<div class="title_cosmetics">'+ option.title +'</div>' +
-          //   '<div class="title_cosmetics">'+ option.description +'</div>'
           if (option.disqus == true) {
               if (is_media < 1) {
                   comment = '<div class="lightbox-comment">' +
@@ -117,20 +115,20 @@
                               '</li>'
                           );
                       }
-                      else if ($(this).attr('href')) {
-                          // debugger;
-                          $('.lightbox ul').append(
-                              '<li class="lightbox-video">' +
-                              '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                              '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                              // '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
-                              '<video class="video_media_set lightbox_media_video" controls>' +
-                              '<source src="' + $(this).attr('href') + '" type="video/mp4"' +
-                              '</video>' +
-                              '</div>' +
-                              '</li>'
-                          );
-                      }
+                      // else if ($(this).attr('href')) {
+                      //     debugger;
+                      //     $('.lightbox ul').append(
+                      //         '<li class="lightbox-video">' +
+                      //         '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                      //         '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                      //         // '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
+                      //         '<video class="video_media_set lightbox_media_video" controls>' +
+                      //         '<source src="' + $(this).attr('href') + '" type="video/mp4"' +
+                      //         '</video>' +
+                      //         '</div>' +
+                      //         '</li>'
+                      //     );
+                      // }
                   }
               });
           }
@@ -146,24 +144,6 @@
 
           if (matches = source.match(/\/\/.*?twitch\.[a-z]+\/\?channel=([^&\s]+)/)) {
               video = 'https://player.twitch.tv/?channel=' + matches[1];
-          }
-
-          if (video) {
-              $('.lightbox ul').append(
-                  '<li class="lightbox-video">' +
-                  '<div class="embed-responsive embed-responsive-16by9">' +
-                  '<iframe class="embed-responsive-item" src="' + video + '" allowfullscreen></iframe>' +
-                  '</div>' +
-                  '</li>'
-              );
-          }
-
-          if (!(option.gallery) && !(video)) {
-              $('.lightbox ul').append(
-                  '<li>' +
-                  '<img src="' + $(this).attr('href') + '"">' +
-                  '</li>'
-              );
           }
 
           size = $('.lightbox ul > li').length;
