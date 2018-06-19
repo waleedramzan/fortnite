@@ -316,6 +316,9 @@
 .fixed-header #header{
     /*z-index: 0 !important;*/
 }
+.hero .hero-block{
+    z-index: 0 !important;
+}
 .media_image_settings{
     width: 100%;
 }
