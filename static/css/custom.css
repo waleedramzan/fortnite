@@ -310,6 +310,12 @@
         right: 0em !important;
     }
 }
+.custom_overlay_theme_set{
+    z-index: 0 !important;
+}
+.fixed-header #header{
+    /*z-index: 0 !important;*/
+}
 .media_image_settings{
     width: 100%;
 }
