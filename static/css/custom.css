@@ -490,3 +490,6 @@
 .sec_banner_custom_set{
     /*max-width: 70%;*/
 }
+.lightbox .lightbox-block .lightbox-prev, .lightbox .lightbox-block .lightbox-next{
+    bottom: 50px !important;
+}

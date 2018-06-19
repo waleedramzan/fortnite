@@ -6,175 +6,183 @@
 
   $.fn.lightbox = function(light) {
 
-  	var current_url = window.location.href;
-  	var is_media = current_url.indexOf("media");
+      var current_url = window.location.href;
+      var is_media = current_url.indexOf("media");
 
-	  var current, size, animation, slideNum;
+      var current, size, animation, slideNum;
 
-	  $(this).click(function(e) {
-	    e.preventDefault();
+      $(this).click(function (e) {
+          e.preventDefault();
 
-			var option = $(this).data("lightbox"),
-					comment = '', title = '';
+          var option = $(this).data("lightbox"),
+              comment = '', title = '';
 
-	    if ($(this).data("animation")) {
-	      animation = $(this).data("animation");
-	    } else {
-	      animation = 'fadeIn animate2';
-	    }
+          if ($(this).data("animation")) {
+              animation = $(this).data("animation");
+          } else {
+              animation = 'fadeIn animate2';
+          }
 
-         //  '<div class="title_cosmetics">'+ option.title +'</div>' +
-			//   '<div class="title_cosmetics">'+ option.description +'</div>'
-	    if ( option.disqus == true ) {
-	      	if(is_media < 1) {
-                comment = '<div class="lightbox-comment">' +
-                    '<div class = lightbox-all>' +
-                    '<div class = lightbox-title>Title:</div>' +
-                    '<div id="title_cosmetics"></div>' +
-                    '<div class = lightbox-obtained>Obtained:</div>' +
-                    '<div id="obtained_cosmetics"></div>' +
-                    '<div class = lightbox-type>Type:</div>' +
-                    '<div id="type_cosmetics"></div>' +
-                    '<div class = lightbox-rarity>Rarity:</div>' +
-                    '<div id="rarity_cosmetics"></div>' + '</div>' +
-                    '<div id="disqus_thread" class="disqus_comments_lightbox_media"></div>' +
-                    '<script>' +
-                    "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
-                    '</script>' +
-                    '<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>' +
-                    '<script id="dsq-count-scr" src="https://' + light.disqus + '.disqus.com/count.js" async></script>' +
-                    '</div>';
-            }
-            else if(is_media > 1){
-	      		comment = '<div class="lightbox-comment">' +
-                    '<div class = lightbox-all>' +
-                    '<div class = lightbox-title>Title:</div>' +
-                    '<div id="title_cosmetics"></div>' +
-                    '<div id="disqus_thread" class="disqus_comments_lightbox_media"></div>' +
-                    '<script>' +
-                    "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
-                    '</script>' +
-                    '<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>' +
-                    '<script id="dsq-count-scr" src="https://' + light.disqus + '.disqus.com/count.js" async></script>' +
-                    '</div>';
-			}
-	    }
+          //  '<div class="title_cosmetics">'+ option.title +'</div>' +
+          //   '<div class="title_cosmetics">'+ option.description +'</div>'
+          if (option.disqus == true) {
+              if (is_media < 1) {
+                  comment = '<div class="lightbox-comment">' +
+                      '<div class = lightbox-all>' +
+                      '<div class = lightbox-title>Title:</div>' +
+                      '<div id="title_cosmetics"></div>' +
+                      '<div class = lightbox-obtained>Obtained:</div>' +
+                      '<div id="obtained_cosmetics"></div>' +
+                      '<div class = lightbox-type>Type:</div>' +
+                      '<div id="type_cosmetics"></div>' +
+                      '<div class = lightbox-rarity>Rarity:</div>' +
+                      '<div id="rarity_cosmetics"></div>' + '</div>' +
+                      '<div id="disqus_thread" class="disqus_comments_lightbox_media"></div>' +
+                      '<script>' +
+                      "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
+                      '</script>' +
+                      '<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>' +
+                      '<script id="dsq-count-scr" src="https://' + light.disqus + '.disqus.com/count.js" async></script>' +
+                      '</div>';
+              }
+              else if (is_media > 1) {
+                  comment = '<div class="lightbox-comment">' +
+                      '<div class = lightbox-all>' +
+                      '<div class = lightbox-title>Title:</div>' +
+                      '<div id="title_cosmetics"></div>' +
+                      '<div id="disqus_thread" class="disqus_comments_lightbox_media"></div>' +
+                      '<script>' +
+                      "(function() {var d = document, s = d.createElement('script');s.src = 'https://fortnitego-com.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();" +
+                      '</script>' +
+                      '<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>' +
+                      '<script id="dsq-count-scr" src="https://' + light.disqus + '.disqus.com/count.js" async></script>' +
+                      '</div>';
+              }
+          }
 
-	    if ( option.facebook == true ) {
-	      comment = '<div id="fb-root"></div>' +
-	      '<script>(function(d, s, id) {' +
-	      'var js, fjs = d.getElementsByTagName(s)[0];'+
-	      'if (d.getElementById(id)) return;'+
-	      'js = d.createElement(s); js.id = id;'+
-	      'js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";'+
-	      'fjs.parentNode.insertBefore(js, fjs);'+
-	      '}(document, \'script\', \'facebook-jssdk\'));</script>'+
-	      '<div class="lightbox-comment">' +
-	      '<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>' +
-	      '</div>';
-	    }
+          if (option.facebook == true) {
+              comment = '<div id="fb-root"></div>' +
+                  '<script>(function(d, s, id) {' +
+                  'var js, fjs = d.getElementsByTagName(s)[0];' +
+                  'if (d.getElementById(id)) return;' +
+                  'js = d.createElement(s); js.id = id;' +
+                  'js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";' +
+                  'fjs.parentNode.insertBefore(js, fjs);' +
+                  '}(document, \'script\', \'facebook-jssdk\'));</script>' +
+                  '<div class="lightbox-comment">' +
+                  '<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>' +
+                  '</div>';
+          }
 
-	    slideNum = $("[data-lightbox*='\"gallery\": \"" + option.gallery + "\"']").index(this);
-	    var lightbox = '<div class="lightbox custom_lightbox">' +
-	      '<div class="lightbox-overlay animated fadeIn fast"></div>' +
-				'<a class="lightbox-close animated fadeIn fast close_custom" href="#"><i class="fa fa-times"></i></a>' +
-	      '<div>' +
-	        '<div class="lightbox-block animated ' + animation + ' fast">' +
-	          '<div class="lightbox-img">' +
-	            '<ul></ul>' +
-	          '</div>'+ comment + '</div>' +
-	      '</div>' +
-	    '</div>';
+          slideNum = $("[data-lightbox*='\"gallery\": \"" + option.gallery + "\"']").index(this);
+          var lightbox = '<div class="lightbox custom_lightbox">' +
+              '<div class="lightbox-overlay animated fadeIn fast"></div>' +
+              '<a class="lightbox-close animated fadeIn fast close_custom" href="#"><i class="fa fa-times"></i></a>' +
+              '<div>' +
+              '<div class="lightbox-block animated ' + animation + ' fast">' +
+              '<div class="lightbox-img">' +
+              '<ul></ul>' +
+              '</div>' + comment + '</div>' +
+              '</div>' +
+              '</div>';
 
-	    $('body').append(lightbox);
+          $('body').append(lightbox);
 
-	    if ( option.gallery ) {
-	      $('.lightbox-img').append(
-	        '<a class="lightbox-prev"><i class="fa fa-chevron-left"></i></a>' +
-	        '<a class="lightbox-next"><i class="fa fa-chevron-right"></i></a>'
-	      );
-	      $('body').find("[data-lightbox*='\"gallery\": \"" + option.gallery + "\"']").each(function() {
+          if (option.gallery) {
+              $('.lightbox-img').append(
+                  '<a class="lightbox-prev"><i class="fa fa-chevron-left"></i></a>' +
+                  '<a class="lightbox-next"><i class="fa fa-chevron-right"></i></a>'
+              );
+              $('body').find("[data-lightbox*='\"gallery\": \"" + option.gallery + "\"']").each(function () {
 
-	      	if(JSON.parse($(this).attr('data-lightbox')).image == "true") {
-                $('.lightbox ul').append(
-                    '<li>' +
-                    '<img rarity="' + JSON.parse($(this).attr('data-lightbox')).rarity + '" type="' + JSON.parse($(this).attr('data-lightbox')).type + '" obtained="' + JSON.parse($(this).attr('data-lightbox')).obtained + '"  description="' + JSON.parse($(this).attr('data-lightbox')).description + '" title="' + JSON.parse($(this).attr('data-lightbox')).title + '"  src="' + $(this).attr('href') + '">' +
-                    '</li>'
-                );
-            }
-            else if(JSON.parse($(this).attr('data-lightbox')).video == "true"){
-				if($(this).attr('src')) {
-					// debugger;
-                    $('.lightbox ul').append(
-                        '<li class="lightbox-video">' +
-                        '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                        '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                        '<iframe class="embed-responsive-item" src="' + $(this).attr('src') + '" allowfullscreen></iframe>' +
-                        '</div>' +
-                        '</li>'
-                    );
-                }
-                else if($(this).attr('href')){
-					// debugger;
-					$('.lightbox ul').append(
-                        '<li class="lightbox-video">' +
-                        '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                        '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
-                        '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
-                        '</div>' +
-                        '</li>'
-                    );
-				}
-			}
-	      });
-	    }
+                  if (JSON.parse($(this).attr('data-lightbox')).image == "true") {
+                      $('.lightbox ul').append(
+                          '<li>' +
+                          '<img rarity="' + JSON.parse($(this).attr('data-lightbox')).rarity + '" type="' + JSON.parse($(this).attr('data-lightbox')).type + '" obtained="' + JSON.parse($(this).attr('data-lightbox')).obtained + '"  description="' + JSON.parse($(this).attr('data-lightbox')).description + '" title="' + JSON.parse($(this).attr('data-lightbox')).title + '"  src="' + $(this).attr('href') + '">' +
+                          '</li>'
+                      );
+                  }
+                  else if (JSON.parse($(this).attr('data-lightbox')).video == "true") {
+                      if ($(this).attr('src')) {
+                          // debugger;
+                          $('.lightbox ul').append(
+                              '<li class="lightbox-video">' +
+                              '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                              '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                              // '<iframe class="embed-responsive-item" src="' + $(this).attr('src') + '" allowfullscreen></iframe>' +
+                              '<video class="video_media_set lightbox_media_video" controls>' +
+                              '<source src="' + $(this).attr('src') + '" type="video/mp4"' +
+                              '</video>' +
+                              '</div>' +
+                              '</li>'
+                          );
+                      }
+                      else if ($(this).attr('href')) {
+                          // debugger;
+                          $('.lightbox ul').append(
+                              '<li class="lightbox-video">' +
+                              '<div class="embed-responsive embed-responsive-16by9" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                              '<img style="display: none" title="' + JSON.parse($(this).attr('data-lightbox')).title + '">' +
+                              // '<iframe class="embed-responsive-item" src="' + $(this).attr('href') + '" allowfullscreen></iframe>' +
+                              '<video class="video_media_set lightbox_media_video" controls>' +
+                              '<source src="' + $(this).attr('href') + '" type="video/mp4"' +
+                              '</video>' +
+                              '</div>' +
+                              '</li>'
+                          );
+                      }
+                  }
+              });
+          }
 
-			var video = '',
-					matches = '',
-					source = $(this).attr('href');
 
-			if (matches = source.match(/\/\/.*?youtube\.[a-z]+\/watch\?v=([^&\s]+)/) || source.match(/youtu\.be\/(.*)/)) {
-	      video = 'https://www.youtube.com/embed/' + matches[1] + '?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0';
-	    }
+          var video = '',
+              matches = '',
+              source = $(this).attr('href');
 
-			if (matches = source.match(/\/\/.*?twitch\.[a-z]+\/\?channel=([^&\s]+)/)) {
-				video = 'https://player.twitch.tv/?channel=' + matches[1];
-			}
+          if (matches = source.match(/\/\/.*?youtube\.[a-z]+\/watch\?v=([^&\s]+)/) || source.match(/youtu\.be\/(.*)/)) {
+              video = 'https://www.youtube.com/embed/' + matches[1] + '?rel=0&amp;amp;autoplay=1&amp;amp;showinfo=0';
+          }
 
-	    if ( video ) {
-	      $('.lightbox ul').append(
-	        '<li class="lightbox-video">' +
-	          '<div class="embed-responsive embed-responsive-16by9">' +
-	          '<iframe class="embed-responsive-item" src="' + video + '" allowfullscreen></iframe>' +
-	          '</div>' +
-	        '</li>'
-	      );
-	    }
+          if (matches = source.match(/\/\/.*?twitch\.[a-z]+\/\?channel=([^&\s]+)/)) {
+              video = 'https://player.twitch.tv/?channel=' + matches[1];
+          }
 
-	    if ( !(option.gallery) && !( video ) ) {
-	      $('.lightbox ul').append(
-	        '<li>' +
-	          '<img src="' + $(this).attr('href') + '"">' +
-	        '</li>'
-	      );
-	    }
+          if (video) {
+              $('.lightbox ul').append(
+                  '<li class="lightbox-video">' +
+                  '<div class="embed-responsive embed-responsive-16by9">' +
+                  '<iframe class="embed-responsive-item" src="' + video + '" allowfullscreen></iframe>' +
+                  '</div>' +
+                  '</li>'
+              );
+          }
 
-	    size = $('.lightbox ul > li').length;
+          if (!(option.gallery) && !(video)) {
+              $('.lightbox ul').append(
+                  '<li>' +
+                  '<img src="' + $(this).attr('href') + '"">' +
+                  '</li>'
+              );
+          }
 
-	    $('.lightbox ul > li').hide();
-	    $('.lightbox ul > li:eq(' + slideNum + ')').show();
+          size = $('.lightbox ul > li').length;
 
-        if(is_media > 1) {
-            $('#title_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('title');
-        }
-        else if(is_media < 1) {
-            $('#title_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('title');
-            $('#obtained_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('obtained');
-            $('#type_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('type');
-            $('#rarity_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('rarity');
-        }
-	    current = slideNum;
-	  });
+          $('.lightbox ul > li').hide();
+          $('.lightbox ul > li:eq(' + slideNum + ')').show();
+
+          if (is_media > 1) {
+              $('#title_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('title');
+          }
+          else if (is_media < 1) {
+              $('#title_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('title');
+              $('#obtained_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('obtained');
+              $('#type_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('type');
+              $('#rarity_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('rarity');
+          }
+          current = slideNum;
+          $('.lightbox_media_video').get(slideNum-1).play();
+      });
 
 	  $('body').on('click', '.lightbox-overlay, .lightbox-close', function() {
 	    if ($(this).data("animation")) {
@@ -186,6 +194,7 @@
 	    $(this).parent().find('.lightbox-overlay').removeClass('fadeIn').addClass('fadeOut');
 	    $(this).parent().find('.lightbox-block').removeClass(animation).addClass('fadeOut');
 	    $(this).parent().find('.lightbox-close').removeClass('fadeIn').addClass('fadeOut');
+	    $(".lightbox_media_video").trigger('pause');
 
 	  	setTimeout(function(){
 	      $('.lightbox').remove();
@@ -196,6 +205,7 @@
 	  $('body').on('click', '.lightbox-next, .lightbox-prev', function(e) {
 	    e.preventDefault();
 	    e.stopPropagation();
+	    $(".lightbox_media_video").trigger('pause');
 
 	    var dest;
 
