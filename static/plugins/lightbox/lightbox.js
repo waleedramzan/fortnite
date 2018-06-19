@@ -181,7 +181,12 @@
               $('#rarity_cosmetics')[0].innerHTML = $('.lightbox ul > li:eq(' + slideNum + ') img').attr('rarity');
           }
           current = slideNum;
-          $('.lightbox_media_video').get(slideNum-1).play();
+          if($(this).find('img').length){
+          	console.log('image');
+		  }
+		  else{
+          	$('.lightbox_media_video').get(slideNum-1).play();
+		  }
       });
 
 	  $('body').on('click', '.lightbox-overlay, .lightbox-close', function() {
